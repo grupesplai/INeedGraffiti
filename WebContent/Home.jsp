@@ -29,7 +29,7 @@
 			class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col-12 text-center foto_home">
 			<a href="buscaImagen?id_img=<%=g.getIdImagen()%>&id_user=<%=id_u%>"><img
 				src="img/<%=g.getUrl()%>" width="200" height="150"> </a> <br>
-			<a href="perfil?id_autor=<%=g.getIdUsuario()%>&id_user=<%=id_u%>"><%=g.getNomUsuario()%></a>
+			<a href="perfil?id_autor=<%=g.getIdUsuario()%>&id_usu=<%=id_u%>"><%=g.getNomUsuario()%></a>
 			<label>Likes: <%=g.getLikes()%></label>
 			<a href="likes?imglike=<%=g.getIdImagen() %>&usid=<%=id_u %>">Like</a>
 		</div>

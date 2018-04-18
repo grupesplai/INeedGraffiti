@@ -6,7 +6,7 @@ public class Usuario {
 	private String movil;
 	private String url;
 	private String descripcion;
-	private String likes;
+	private String sumlikes;
 	private String usuario;
 	private String estilo;
 	private String fecha;
@@ -20,20 +20,18 @@ public class Usuario {
 		this.movil = movil;
 		this.url = url_perfil;
 	}
-	public Usuario(String url,String descripcion, String usuarioimg, String estilo, String fecha, String likes) {
+	public Usuario(String url,String descripcion, String estilo, String fecha, String sumlikes) {
 		this.url = url;
 		this.descripcion = descripcion;
-		this.likes = likes;
-		this.usuario = usuarioimg;
+		this.sumlikes = sumlikes;
 		this.estilo = estilo;
 		this.fecha = fecha;
 	}
-	public Usuario(String descripcion, String url, int idimg, String usuarioimg, String estilo, String fecha, String likes) {
+	public Usuario(String descripcion, String url, int idimg, String estilo, String fecha, String likes) {
 		this.idimg=idimg;
 		this.url = url;
 		this.descripcion = descripcion;
-		this.likes = likes;
-		this.usuario = usuarioimg;
+		this.sumlikes = likes;
 		this.estilo = estilo;
 		this.fecha = fecha;
 	}
@@ -50,11 +48,11 @@ public class Usuario {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public String getLikes() {
-		return likes;
+	public String getSumlikes() {
+		return sumlikes;
 	}
-	public void setLikes(String likes) {
-		this.likes = likes;
+	public void setSumlikes(String sumlikes) {
+		this.sumlikes = sumlikes;
 	}
 	public String getEstilo() {
 		return estilo;

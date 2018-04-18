@@ -88,15 +88,14 @@ public class UsuarioController {
 
 		List<Usuario> listimagen = new ArrayList<Usuario>();
 
-		String sql = "SELECT imagenes,description_imagen,usuario,estilo,fecha,SUM(bolean) AS sumlikes, FROM imagenes JOIN usuario ON imagenes.id_usuario=usuario.id_usuario JOIN likesimg ON likesimg.id_usuario=usuario.id_usuario WHERE likesimg.id_img='" + id_usu + "'  Order by sumlikes";
+		String sql = "SELECT imagenes,description_imagen,estilo,fecha, SUM(bolean) AS sumlikes  FROM imagenes LEFT JOIN likesimg ON imagenes.id_imagenes=likesimg.id_img WHERE imagenes.id_usuario='" + id_usu + "' GROUP BY id_imagenes ORDER BY fecha_de_pubblication DESC ";
 		
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				listimagen.add(new Usuario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6)));
+				listimagen.add(new Usuario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString("sumlikes")));
 			}
 		}
 		return listimagen;
@@ -105,7 +104,7 @@ public class UsuarioController {
 	public static List<Usuario> getImagen2(int id_au) throws SQLException {
 
 		List<Usuario> listimagen = new ArrayList<Usuario>();
-		String sql = "SELECT imagenes,description_imagen,usuario,estilo,fecha, SUM(bolean) AS sumlikes FROM imagenes JOIN usuario ON imagenes.id_usuario=usuario.id_usuario JOIN likesimg ON usuario.id_usuario=likesimg.id_usuario WHERE likesimg.id_img='" + id_au + "'  Order by sumlikes";
+		String sql = "SELECT imagenes,description_imagen,estilo,fecha, SUM(bolean) AS sumlikes  FROM imagenes LEFT JOIN likesimg ON imagenes.id_imagenes=likesimg.id_img WHERE imagenes.id_usuario='" + id_au + "' GROUP BY id_imagenes ORDER BY fecha_de_pubblication DESC ";
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 
@@ -113,7 +112,7 @@ public class UsuarioController {
 
 			while (rs.next()) {
 				listimagen.add(new Usuario(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7)));
+						rs.getString(5), rs.getString(6)));
 			}
 		}
 		return listimagen;

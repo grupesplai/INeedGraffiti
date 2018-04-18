@@ -7,7 +7,7 @@
 			int id = (int) session.getAttribute("id_usu");
 			String nick = (String) session.getAttribute("nick");
 
-			out.println("Bienvenido " + nick + " con ID: " + id);
+			out.println("Bienvenido <a href='perfil?id_usu="+id+"'>" + nick + "</a> con ID: " + id);
 		}
 	%>
 </h3>
