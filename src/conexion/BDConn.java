@@ -8,7 +8,7 @@ import com.mysql.jdbc.Connection;
 public class BDConn {
 	private static final String URL = "jdbc:mysql://localhost:3306/grafiti";
 	private static final String USERNAME = "root";
-	private static final String PASSWORD = "admin";
+	private static final String PASSWORD = "1234";
 	
 
 	public static Connection getConn() throws SQLException {

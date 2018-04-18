@@ -8,6 +8,7 @@ public class Anuncios {
 	private String nomUsuario;
 	private String descripcion;
 	private int fecha;
+	private String fechas;
 	private String comentario;
 	
 	public Anuncios(int id_img, int id_usu, String usuNom, String url, int fecha, String descripcion, String comentario ) {
@@ -26,6 +27,13 @@ public class Anuncios {
 		this.nomUsuario = nomUsu;
 		this.url = url;
 
+	}
+	
+	public Anuncios(String usuario, String muro, String descripcion, String fecha) {
+		this.nomUsuario= usuario;
+		this.url = muro;
+		this.descripcion = descripcion;
+		this.fechas = fecha;
 	}
 	
 	public int getIdImagen() {

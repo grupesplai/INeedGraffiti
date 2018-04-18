@@ -15,7 +15,7 @@ public class ImgController {
 	public static List<home> imgTop() {//trae todas las imagenes a Home.jsp
 
 		List<home> theList = new ArrayList<home>();
-		String sql = "SELECT id_imagenes,imagenes.id_usuario,usuario,imagenes FROM imagenes JOIN usuario ON imagenes.id_usuario=usuario.id_usuario";
+		String sql = "SELECT id_imagenes,imagenes.id_usuario,usuario,imagenes,SUM(bolean) AS sumlikes FROM imagenes JOIN usuario ON imagenes.id_usuario=usuario.id_usuario JOIN likesimg ON imagenes.id_imagenes=likesimg.id_img GROUP BY id_img ORDER BY sumlikes DESC";
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 
@@ -23,7 +23,7 @@ public class ImgController {
 
 			while (rs.next()) {
 				theList.add(new home(
-						rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4)));
+						rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString("sumlikes")));
 			}
 		} catch (Exception e) {
 			String s = e.getMessage();

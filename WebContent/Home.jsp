@@ -31,6 +31,7 @@
 				src="img/<%=g.getUrl()%>" width="200" height="150"> </a> <br>
 			<a href="perfil?id_autor=<%=g.getIdUsuario()%>&id_user=<%=id_u%>"><%=g.getNomUsuario()%></a>
 			<label>Likes: <%=g.getLikes()%></label>
+			<a href="likes?imglike=<%=g.getIdImagen() %>&usid=<%=id_u %>">Like</a>
 		</div>
 		<%
 			}
