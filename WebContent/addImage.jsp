@@ -1,5 +1,10 @@
+<%@page import="controladores.ImgController"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page import="modelos.*"%>
+<%@ page import="controladores.*"%>
+<%@ page import="servlets.*"%>
+<%@ page import="java.util.List"%>
 <%@ include file="parts/barraMenu.jsp"%>
 <h1>Nuevo Usuario</h1>
 <hr>
@@ -24,10 +29,24 @@
 			placeholder="movil">
 	</div>
 	<div class="form-group">
-		<label for="carga_img">Selecciona la imagen</label> <input
-			type="text" name="carga_img" class="form-control"
+		<label for="carga_img">Selecciona la imagen</label> <input type="text"
+			name="carga_img" class="form-control"
 			placeholder="Selecciona la imagen">
 
+	</div>
+	<div class="form-group">
+		<label class="separacion">Estilo: </label>
+		<%
+                    List<home> listEstilos = ImgController.getEstilos();
+                    %>
+		<select name="poblacion" class="form-group" required>
+			<option value="" disabled selected>Seleccionar un estilo</option>
+			<%
+					for (home g : listEstilos) {
+                            %>
+			<option value="<%= g.getId_estilo() %>"><%= g.getEstilo() %></option>
+			<% }     %>
+		</select>
 	</div>
 	<div class="form-group">
 		<label for="desc_img">Descripción</label> <input type="text"

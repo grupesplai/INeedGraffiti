@@ -8,10 +8,14 @@ public class home {//fotos de Home (deberia llamarse imagenes...
 	private String url;
 	private String likes;
 	private String descripcion;
+	private int id_estilo;
 	private String estilo;
 	private int fecha;	// fecha introducida por el usuario.
-	
 
+	public home(int id_estilo,String estilo) {
+		this.id_estilo = id_estilo;
+		this.estilo = estilo;
+	}
 	public home(int id_img, int id_usu, String usuNom, String url, String likes) { //constructor para traer imagenes a Home.jsp
 		this.idImagen = id_img;
 		this.idUsuario = id_usu;
@@ -54,6 +58,9 @@ public class home {//fotos de Home (deberia llamarse imagenes...
 		return descripcion;
 	}
 
+	public int getId_estilo() {
+		return id_estilo;
+	}
 	public String getEstilo() {
 		return estilo;
 	}

@@ -14,7 +14,7 @@
 			<%
 				for (Usuario user : profile) {
 			%><div align="center">
-				<img class="img-fluid img-thumbnail" src="img/<%=user.getUrlPerfil()%>" width="100" height="70"><br>
+				<img class="img-fluid img-thumbnail" src="user/<%=user.getUrl()%>" width="100" height="70"><br>
 				<label><%=user.getUsuario()%> </label><br>
 				<label><%=user.getEmail()%></label><br>
 				<label> <%=user.getMovil()%></label>

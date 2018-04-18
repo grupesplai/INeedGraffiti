@@ -63,4 +63,21 @@ public class ImgController {
 				System.out.println(s);
 			}
 	}
+	public static List<home> getEstilos(){
+
+		List<home> estilos = new ArrayList<home>();
+		String sql ="SELECT id_estilo, estilo FROM estilos";			
+		
+		try (Connection conn = BDConn.getConn();Statement stmt = conn.createStatement()) {
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()){
+				estilos.add(new home(
+				rs.getInt(1),rs.getString(2)));
+			}
+		} catch (Exception e) {
+			String s = e.getMessage();
+			System.out.println(s);
+		}
+		return estilos;
+	}
 }
