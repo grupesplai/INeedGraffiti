@@ -8,13 +8,14 @@ import java.util.List;
 import com.mysql.jdbc.Connection;
 
 import conexion.BDConn;
-import modelos.Usuario;
+import modelos.Search;
 
 public class SearchController {
 
-	List<Usuario> uList = new ArrayList<Usuario>();
-	String sql = "SELECT id_usuario,usuario,mail,movil,imagen_perfil FROM usuario WHERE id_usuario='" + id_usu + "'";
+	public static List<Search> getSearch (String busqueda){
 	
+		List<Search> uList = new ArrayList<Search>();
+		String sql = "SELECT id_imagenes,imagenes.id_usuario,usuario,description_imagen,estilo FROM imagenes JOIN usuario ON imagenes.id_usuario=usuario.id_usuario WHERE description_imagen LIKE '%" + busqueda +"%' OR usuario LIKE '%" + busqueda + "%' OR estilo LIKE '%" + busqueda + "%'";
 	try(
 	Connection conn = BDConn.getConn();
 	Statement stmt = conn.createStatement())
@@ -23,7 +24,7 @@ public class SearchController {
 		ResultSet rs = stmt.executeQuery(sql);
 
 		while (rs.next()) {
-			uList.add(new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+			uList.add(new Search(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5)));
 		}
 	}catch(
 	Exception e)

@@ -15,9 +15,9 @@
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li><form class="navbar-form navbar-left text-center"
-						action="#BuscarTag.java(servlet)">
+						action="search" method="post">
 						<div class="form-group">
-							<input type="text" class="form-control" name="#"
+							<input type="text" class="form-control" name="Busqueda"
 								placeholder="BuscaGraffiti">
 						</div>
 						<button type="submit" class="btn btn-default">Buscar</button>

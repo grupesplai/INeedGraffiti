@@ -68,7 +68,7 @@ public class UsuarioController {
 	public static List<Usuario> getPerfil2(int id_au) {
 
 		List<Usuario> uList = new ArrayList<Usuario>();
-		String sql = "SELECT id_usuario,usuario,mail,movil,imagen_perfil FROM usuario WHERE id_usuario='" + id_au + "'";
+		String sql = "SELECT id_usuario,usuario,mail,movil,imagen_perfil FROM usuario WHERE id_usuario='" + id_au + "' ";
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 
 			ResultSet rs = stmt.executeQuery(sql);
