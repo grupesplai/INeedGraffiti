@@ -13,7 +13,8 @@
 		<div class="row">
 			<%
 				for (Usuario user : profile) {
-			%><div align="center">
+			%><div  style="display:inline-block;
+				class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col-12 text-center foto_home">
 				<img class="img-fluid img-thumbnail" src="user/<%=user.getUrl()%>" width="100" height="70"><br>
 				<label><%=user.getUsuario()%> </label><br>
 				<label><%=user.getEmail()%></label><br>
