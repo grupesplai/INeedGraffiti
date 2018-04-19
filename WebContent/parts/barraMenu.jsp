@@ -1,10 +1,10 @@
+
 <!doctype html>
 <html lang="es">
 <head>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="styles.css" rel="stylesheet">
-<link href="estilo.css" rel="stylesheet">
 <title>Home</title>
 </head>
 <body>
@@ -15,9 +15,9 @@
 			</div>
 			<ul class="nav navbar-nav navbar-right">
 				<li><form class="navbar-form navbar-left text-center"
-						action="search" method="post">
+						action="/iGrafitti/search" method="post">
 						<div class="form-group">
-							<input type="text" class="form-control" name="Busqueda"
+							<input type="text" class="form-control" name="Buscar"
 								placeholder="BuscaGraffiti">
 						</div>
 						<button type="submit" class="btn btn-default">Buscar</button>

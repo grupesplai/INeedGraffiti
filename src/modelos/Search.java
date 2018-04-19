@@ -7,16 +7,27 @@ public class Search {
 	private String usuario;
 	private String descripcion;
 	private String estilo;
+	private String imagenes;
 	
 	
-	public Search (int idimagen, int idusuario, String usuario, String descripcion, String estilo) {
-			this.idimagen = idimagen;
-			this.idusuario = idusuario;
-			this.usuario = usuario;
-			this.descripcion = descripcion;
-			this.estilo = estilo;
-		}
+	public Search (int idimagen, int idusuario, String imagenes, String usuario, String descripcion, String estilo) {
+		this.idimagen = idimagen;
+		this.idusuario = idusuario;
+		this.imagenes = imagenes;
+		this.usuario = usuario;
+		this.descripcion = descripcion;
+		this.estilo = estilo;
+	}
+	
+	
+	public String getImagenes() {
+		return imagenes;
+	}
 
+
+	public void setImagenes(String imagenes) {
+		this.imagenes = imagenes;
+	}
 
 	public int getIdimagen() {
 		return idimagen;
