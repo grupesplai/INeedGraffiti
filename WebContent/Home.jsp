@@ -83,54 +83,32 @@ color:white;
 </style>
 
 <script>
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(	function() {
+		$(document).on(	"click",".botonlike",function(e) {
+				var idimagen = $(this).data("idimagen");
+				var idu = $(this).data("idu");
+				var botonClicado = $(this);
 
-						$(document)
-								.on(
-										"click",
-										".botonlike",
-										function(e) {
-											var idimagen = $(this).data(
-													"idimagen");
-											var idu = $(this).data("idu");
-											var botonClicado = $(this);
+				$(this).toggleClass("corazonLleno");
+				$(this).toggleClass("fondo");
 
-											$(this).toggleClass("corazonLleno");
-
-											$
-													.get({
-														url : "likes",
-														dataType : "json",
-														data : {
-															imglike : idimagen,
-															usid : idu
-														},
-														success : function(data) {//callback
-															if (data.result == "ok") {
-																console
-																		.log(
-																				"nuevos likes: ",
-																				data.likes);
-																botonClicado
-																		.closest(
-																				"div.elementoHome")
-																		.find(
-																				"span.numlikes")
-																		.text(
-																				data.likes);
-															} else {
-																console
-																		.log("se ha producido un error");
-															}
-
-														}
-													});
-
-										});
-
-					});
+				$.get({
+					url : "likes",
+					dataType : "json",
+					data : {
+					imglike : idimagen,
+					usid : idu
+						}, success : function(data) {//callback
+							if (data.result == "ok") {
+								console.log("nuevos likes: ",data.likes);
+								botonClicado.closest("div.elementoHome").find("span.numlikes").text(data.likes);
+							} else {
+								console.log("se ha producido un error");
+							}
+				}
+	});
+});
+});
 </script>
 </body>
 </html>
