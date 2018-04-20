@@ -6,7 +6,7 @@ public class home {//fotos de Home (deberia llamarse imagenes...
 	private int idUsuario;
 	private String nomUsuario;
 	private String url;
-	private String likes;
+	private int likes;
 	private String descripcion;
 	private int id_estilo;
 	private String estilo;
@@ -16,7 +16,7 @@ public class home {//fotos de Home (deberia llamarse imagenes...
 		this.id_estilo = id_estilo;
 		this.estilo = estilo;
 	}
-	public home(int id_img, int id_usu, String usuNom, String url, String likes) { //constructor para traer imagenes a Home.jsp
+	public home(int id_img, int id_usu, String usuNom, String url, int likes) { //constructor para traer imagenes a Home.jsp
 		this.idImagen = id_img;
 		this.idUsuario = id_usu;
 		this.nomUsuario = usuNom;
@@ -50,7 +50,7 @@ public class home {//fotos de Home (deberia llamarse imagenes...
 		return url;
 	}
 
-	public String getLikes() {
+	public int getLikes() {
 		return likes;
 	}
 
@@ -64,7 +64,6 @@ public class home {//fotos de Home (deberia llamarse imagenes...
 	public String getEstilo() {
 		return estilo;
 	}
-
 	public int getFecha() {
 		return fecha;
 	}

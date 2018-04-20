@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -36,38 +37,38 @@ public class likes extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int id_img = 0;
-		int usid = 0;
-		boolean vdd=false;
-
-		if (request.getParameter("imglike") != null) {
-			id_img = Integer.parseInt(request.getParameter("imglike"));
-			usid = Integer.parseInt(request.getParameter("usid"));
-			
-			vdd = UsuarioController.bool(id_img,usid);
-			
-			if (vdd == true) {
-				UsuarioController.deletelike(id_img,usid);
-				response.sendRedirect("Home.jsp");
-			} else{
-				UsuarioController.addlike(id_img,usid);
-				response.sendRedirect("Home.jsp");
+		int id_img = Integer.parseInt(request.getParameter("imglike"));
+		int usid = Integer.parseInt(request.getParameter("usid"));
+		boolean vdd = UsuarioController.bool(id_img, usid);
+		
+		
+		if (vdd == true) {
+			UsuarioController.deletelike(id_img, usid);
+			System.out.println("Like borrado");
+		} else {
+			UsuarioController.addlike(id_img, usid);
+			System.out.println("Like añadido");
 		}
-		if (request.getParameter("imglikeau") != null) {
-			id_img = Integer.parseInt(request.getParameter("imglikeau"));
-			usid = Integer.parseInt(request.getParameter("usid"));
-			
-			vdd = UsuarioController.bool(id_img,usid);
-			
-			if (vdd == true) {
-				UsuarioController.deletelike(id_img,usid);
-				response.sendRedirect("perfil_autor.jsp");
-			}else {
-				UsuarioController.addlike(id_img,usid);
-				response.sendRedirect("perfil_autor.jsp");
-			}
+		
+		int nuevosLikes = UsuarioController.sumlike(id_img);
+		
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+	    response.getWriter().write("{\"result\":\"ok\", \"likes\": "+ nuevosLikes +"}");
+		
+		
+		/*
+		if (request.getParameter("hom") != null) {
+			response.sendRedirect("Home.jsp");
+		} else if (request.getParameter("desc") != null) {
+			response.sendRedirect("descImagen.jsp");
+		} else if (request.getParameter("perf") != null) {
+			int sdfs = Integer.parseInt(request.getParameter("usid"));
+			response.sendRedirect("perfil.jsp");
 		}
-	}
+		*/
+		
 	}
 
 	/**
@@ -77,6 +78,5 @@ public class likes extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 	}
 }

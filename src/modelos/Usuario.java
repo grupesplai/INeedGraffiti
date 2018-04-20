@@ -6,7 +6,7 @@ public class Usuario {
 	private String movil;
 	private String url;
 	private String descripcion;
-	private String sumlikes;
+	private int likes;
 	private String usuario;
 	private String estilo;
 	private String fecha;
@@ -20,18 +20,18 @@ public class Usuario {
 		this.movil = movil;
 		this.url = url_perfil;
 	}
-	public Usuario(String url,String descripcion, String estilo, String fecha, String sumlikes) {
+	public Usuario(String url,String descripcion, String estilo, String fecha, int likes) {
 		this.url = url;
 		this.descripcion = descripcion;
-		this.sumlikes = sumlikes;
+		this.likes = likes;
 		this.estilo = estilo;
 		this.fecha = fecha;
 	}
-	public Usuario(String descripcion, String url, int idimg, String estilo, String fecha, String likes) {
-		this.idimg=idimg;
+	public Usuario(String descripcion, String url, int id_img, String estilo, String fecha, int likes) {
+		this.idimg=id_img;
 		this.url = url;
 		this.descripcion = descripcion;
-		this.sumlikes = likes;
+		this.likes = likes;
 		this.estilo = estilo;
 		this.fecha = fecha;
 	}
@@ -39,53 +39,31 @@ public class Usuario {
 	public String getUrl() {
 		return url;
 	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
 	public String getDescripcion() {
 		return descripcion;
 	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public int getLikes() {
+		return likes;
 	}
-	public String getSumlikes() {
-		return sumlikes;
-	}
-	public void setSumlikes(String sumlikes) {
-		this.sumlikes = sumlikes;
+	public String getUsuario() {
+		return usuario;
 	}
 	public String getEstilo() {
 		return estilo;
 	}
-	public void setEstilo(String estilo) {
-		this.estilo = estilo;
-	}
 	public String getFecha() {
 		return fecha;
-	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
 	}
 	public int getIdUsuario() {
 		return idUsuario;
 	}
-	
-	public String getUsuario() {
-		return usuario;
-	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public String getMovil() {
 		return movil;
 	}
 	public int getIdimg() {
 		return idimg;
 	}
-	public void setIdimg(int idimg) {
-		this.idimg = idimg;
-	}
-
 }
