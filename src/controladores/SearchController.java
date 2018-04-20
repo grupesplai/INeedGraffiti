@@ -12,23 +12,25 @@ import modelos.Usuario;
 
 public class SearchController {
 
-	List<Usuario> uList = new ArrayList<Usuario>();
-	String sql = "SELECT id_usuario,usuario,mail,movil,imagen_perfil FROM usuario WHERE id_usuario='" + id_usu + "'";
-	
-	try(
-	Connection conn = BDConn.getConn();
-	Statement stmt = conn.createStatement())
-	{
+	public List<Usuario> getList(int id_usu) {
+		
+		List<Usuario> uList = new ArrayList<Usuario>();
+		String sql = "SELECT id_usuario,usuario,mail,movil,imagen_perfil FROM usuario WHERE id_usuario='" + id_usu
+				+ "'";
 
-		ResultSet rs = stmt.executeQuery(sql);
+		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 
-		while (rs.next()) {
-			uList.add(new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				uList.add(
+						new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+			}
+		} catch (Exception e) {
+			String s = e.getMessage();
+			System.out.println(s);
 		}
-	}catch(
-	Exception e)
-	{
-		String s = e.getMessage();
-		System.out.println(s);
-	}return uList;
-}}
+		return uList;
+	}
+
+}
