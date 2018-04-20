@@ -10,9 +10,11 @@
     <h2>${requestScope.message}</h2>
 
 
-<form enctype="multipart/form-data" action="subir" method="post" >
+<form enctype="multipart/form-data" action="subirimg" method="post" >
 Select File to Upload:<input type="file" name="file">
 <br>
+
+	
 <input type="submit" value="Upload">
 </form>
 

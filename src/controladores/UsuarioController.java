@@ -223,4 +223,19 @@ public class UsuarioController {
 		}
 		return resp;
 	}
+	
+	public static void subirimg(int id_user, String fileName, String comentario, String estilo, String fecha) {
+
+		String sql = String.format(
+				"INSERT INTO imagenes (id_usuario, imagenes, description_imagen, estilo, fecha) VALUES (\"%s\",\"%s\", \"%s\", \"%s\", \"%s\")",
+				id_user, fileName, comentario, estilo, fecha);
+
+		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
+			stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			String s = e.getMessage();
+			System.out.println(s);
+		}
+	}
+	
 }
