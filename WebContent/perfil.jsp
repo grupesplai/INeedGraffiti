@@ -81,5 +81,6 @@ if(traer_anuncio.isEmpty() == false){
 	%>
 </div>
 </div>
+<a href="editarperfil?id_usuario=<%=id_u%>">Editar perfil</a><br>
 </body>
 </html>
