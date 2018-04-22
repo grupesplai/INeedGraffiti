@@ -19,20 +19,32 @@
 %><%@ include file="parts/barraMenu.jsp"%>
 <%
 	for (home f : desc_ima) {
-		int total = ImgController.getLikes(id_img);
 %>
-<img src="img/<%=f.getUrl()%>" width="200" height="150">
-<br>
-<label>Likes: <%=total%></label>
-<%
-	if (id_u != 0) {
-%>
-<a href="likes?imglike=<%=id_img%>&usid=<%=id_u%>&desc=<%=id_img%>">Like</a>
+<div class="elementoHome" style="position: relative; width:200px; height:150px">
+	<img src="img/<%=f.getUrl()%>" width="200" height="150">
+	<%
+		if (id_u != 0) {
+				String clase = "";
+				if (UsuarioController.bool(f.getIdImagen(), id_u)) {
+					clase = "corazonLleno";
+				} else {
+					clase = "fondo";
+				}
+	%>
+	<div class="posAbs">
+		<i class="fas fa-heart botonlike btn-xs btn-alert <%=clase%>"
+			style="font-size: 30px" data-idimagen="<%=f.getIdImagen()%>"
+			data-idu="<%=id_u%>"></i>
+	</div>
 
-<%
-	}
-%>
-<br><label>Autor:</label>
+	<%
+		}
+	%>
+	<br><label>Likes: <span class="numlikes"><%=ImgController.getLikes(id_img)%></span></label>
+</div>
+
+<br>
+<label>Autor:</label>
 <a href="perfil?id_autor=<%=f.getIdUsuario()%>&id_usu=<%=id_u%>"><%=f.getNomUsuario()%></a>
 <br>
 <label>Estilo:</label>
@@ -51,23 +63,24 @@
 %>
 <textarea><%=f.getDescripcion()%> 	</textarea>
 <%
+	}
 	List<Comentario> listaComentarios = ComentarioController.getComentario(id_img);
-		for (Comentario comment : listaComentarios) {
+	for (Comentario c : listaComentarios) {
 %>
 <br>
 <label>idImagen:</label>
-<span><%=comment.getIdOrigen()%> </span>
+<span><%=c.getIdOrigen()%> </span>
 <br>
 <label> idComentario: </label>
-<span><%=comment.getIdComentario()%> </span>
+<span><%=c.getIdComentario()%> </span>
 <br>
 <label>Nombre del usuario:</label>
-<span><%=comment.getUsuario()%> </span>
+<span><%=c.getUsuario()%> </span>
 <br>
-<textarea><%=comment.getComentario()%> </textarea>
+<textarea><%=c.getComentario()%> </textarea>
 <%
 	}
-		if (id_u != 0) {
+	if (id_u != 0) {
 %>
 <h1>Nuevo Comentario</h1>
 <hr>
@@ -98,8 +111,8 @@
 <hr>
 <%
 	}
-	}
 %>
 </div>
+<%@ include file="parts/footerAjax.jsp"%>
 </body>
 </html>

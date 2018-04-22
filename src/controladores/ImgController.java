@@ -34,12 +34,29 @@ public class ImgController {
 		return theList;
 	}
 	
+	public static String unaImagen(int as) {//trae todas las imagenes a Home.jsp
+
+		String resp = "";
+		
+		String sql = "SELECT imagenes FROM imagenes WHERE id_imagenes='"+as+"'";
+
+		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				resp = rs.getString(1);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return resp;
+	}
+	
 	public static List<home> getImage(int img){
 
 		List<home> listimagen = new ArrayList<home>();
-		String sql ="SELECT id_imagenes,imagenes,description_imagen,usuario.id_usuario,usuario,estilo,fecha FROM imagenes \r\n" + 
-				"JOIN usuario ON imagenes.id_usuario=usuario.id_usuario\r\n" + 
-				"JOIN estilos ON estilos.id_estilo=imagenes.id_estilo WHERE id_imagenes='"+ img +"'";			
+		String sql ="SELECT id_imagenes,imagenes,description_imagen,usuario.id_usuario,usuario,estilo,fecha"
+				+ " FROM imagenes JOIN usuario ON imagenes.id_usuario=usuario.id_usuario\r\n" + 
+				"JOIN estilos ON estilos.id_estilo=imagenes.id_estilo WHERE id_imagenes='"+ img +"'";
 		
 		try (Connection conn = BDConn.getConn();Statement stmt = conn.createStatement()) {
 			
@@ -55,7 +72,7 @@ public class ImgController {
 		return listimagen;
 	}
 	
-	public static int getLikes(int id_img) {
+	public static int getLikes(int id_img) {//query para mejorar
 		int resp = 0;
 		String sql ="SELECT COUNT(bolean) sumalikes FROM likesimg  WHERE id_img='"+id_img+"' GROUP BY id_img";			
 		
@@ -69,7 +86,6 @@ public class ImgController {
 			String s = e.getMessage();
 			System.out.println(s);
 		}
-		
 		return resp;
 	}
 	

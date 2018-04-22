@@ -1,0 +1,23 @@
+ /*!
+ * Depends:
+ *      jquery.ui.map.js
+ */
+( function($) {
+
+	$.extend($.ui.gmap.prototype, {
+
+		addShape: function(shapeType, shapeOptions) {
+			var shape = new google.maps[shapeType](jQuery.extend({'map': this.get('map')}, shapeOptions));
+			this.get('overlays > ' + shapeType, []).push(shape);
+			return $(shape);
+		},
+
+		loadFusion: function(fusionTableOptions, fusionTableId) {
+			( (!fusionTableId) ? this.get('overlays > FusionTablesLayer', new google.maps.FusionTablesLayer()) : this.get('overlays > FusionTablesLayer', new google.maps.FusionTablesLayer(fusionTableId, fusionTableOptions)) ).setOptions(jQuery.extend({'map': this.get('map') }, fusionTableOptions));
+		},
+
+		loadKML: function(uid, url, kmlLayerOptions) {
+			this.get('overlays > ' + uid, new google.maps.KmlLayer(url, jQuery.extend({'map': this.get('map')}, kmlLayerOptions)));
+		}
+	});
+} (jQuery) );

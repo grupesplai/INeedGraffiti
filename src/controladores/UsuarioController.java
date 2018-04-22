@@ -66,26 +66,6 @@ public class UsuarioController {
 		return uList;
 	}
 
-	public static List<Usuario> getImagen(int id_usu) throws SQLException {
-
-		List<Usuario> listimagen = new ArrayList<Usuario>();
-
-			String sql = "SELECT imagenes,description_imagen,estilo,fecha, COUNT(likesimg.bolean) sumalikes FROM imagenes " + 
-					"LEFT JOIN likesimg ON imagenes.id_imagenes=likesimg.id_img " + 
-					"LEFT JOIN estilos ON imagenes.id_estilo=estilos.id_estilo "+ 
-					"WHERE imagenes.id_usuario='"+id_usu+"' GROUP BY id_imagenes ORDER BY sumalikes DESC";
-		
-		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-
-			ResultSet rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				listimagen.add(new Usuario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
-			}
-		}
-		return listimagen;
-	}
-
 	public static List<Anuncios> getAnuncio(int id_usu) throws SQLException {
 
 		List<Anuncios> listimagen = new ArrayList<Anuncios>();
@@ -153,23 +133,5 @@ public class UsuarioController {
 			vdd= false;
 		}
 		return vdd;
-	}
-	
-	public static int sumlike(int imglike) {
-
-		String sql = "select sum(bolean) FROM likesimg WHERE id_img='" + imglike+"'";
-		int resp=0;
-
-		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				resp = rs.getInt(1);
-			}
-		} catch (Exception e) {
-			String s = e.getMessage();
-			System.out.println(s);
-		}
-		return resp;
 	}
 }

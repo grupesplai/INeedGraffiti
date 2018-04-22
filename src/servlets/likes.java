@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.mysql.jdbc.Connection;
 
 import conexion.BDConn;
+import controladores.ImgController;
 import controladores.UsuarioController;
 
 /**
@@ -35,39 +36,23 @@ public class likes extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id_img = Integer.parseInt(request.getParameter("imglike"));
 		int usid = Integer.parseInt(request.getParameter("usid"));
-		boolean vdd = UsuarioController.bool(id_img, usid);
-		
+		boolean vdd = UsuarioController.bool(id_img, usid);		
 		
 		if (vdd == true) {
 			UsuarioController.deletelike(id_img, usid);
-			System.out.println("Like borrado");
+			System.out.println("like eliminado");
 		} else {
+			System.out.println("like añadido");
 			UsuarioController.addlike(id_img, usid);
-			System.out.println("Like añadido");
 		}
 		
-		int nuevosLikes = UsuarioController.sumlike(id_img);
-		
-		
+		int nuevosLikes = ImgController.getLikes(id_img);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 	    response.getWriter().write("{\"result\":\"ok\", \"likes\": "+ nuevosLikes +"}");
-		
-		
-		/*
-		if (request.getParameter("hom") != null) {
-			response.sendRedirect("Home.jsp");
-		} else if (request.getParameter("desc") != null) {
-			response.sendRedirect("descImagen.jsp");
-		} else if (request.getParameter("perf") != null) {
-			int sdfs = Integer.parseInt(request.getParameter("usid"));
-			response.sendRedirect("perfil.jsp");
-		}
-		*/
 		
 	}
 

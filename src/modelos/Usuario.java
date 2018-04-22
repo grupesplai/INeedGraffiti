@@ -13,19 +13,11 @@ public class Usuario {
 	private int idimg;
 
 	public Usuario(int id_usu, String usuario, String email, String movil, String url_perfil) {
-
 		this.idUsuario = id_usu;
 		this.usuario = usuario;
 		this.email = email;
 		this.movil = movil;
 		this.url = url_perfil;
-	}
-	public Usuario(String url,String descripcion, String estilo, String fecha, int likes) {
-		this.url = url;
-		this.descripcion = descripcion;
-		this.likes = likes;
-		this.estilo = estilo;
-		this.fecha = fecha;
 	}
 	public Usuario(String descripcion, String url, int id_img, String estilo, String fecha, int likes) {
 		this.idimg=id_img;
