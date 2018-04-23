@@ -29,7 +29,7 @@
 	<%
 		for (Usuario user : profile) {
 	%><div style="display: inline-block;" col-lg-3 col-md-4 col-sm-6
-		col-xs-12 col-12text-centerfoto_home">
+		col-xs-12col-12text-centerfoto_home">
 		<img class="img-fluid img-thumbnail" src="user/<%=user.getUrl()%>"
 			width="100" height="70"><br> <label><%=user.getUsuario()%>
 		</label><br> <label><%=user.getEmail()%></label><br> <label>
@@ -39,17 +39,17 @@
 		}
 	%>
 </div>
-<h1 align="center">Portfolio</h1>
+
 <h2>${requestScope.message}</h2>
 
-
+<h1 align="center">Portfolio</h1>
 <form enctype="multipart/form-data" action="subirimg" method="post">
-	
+
 	<div class="form-group">
 		<label for="imagen">imagen:</label> <input type="file" name="file">
 	</div>
 	<div class="form-group">
-		<label for="comentario" >Comentario:</label> <input type="text"
+		<label for="comentario">Comentario:</label> <input type="text"
 			name="comentario">
 	</div>
 
@@ -59,15 +59,14 @@
 	<div class="form-group">
 		<label for="fecha">Fecha:</label> <input type="text" name="fecha">
 	</div>
-<input type="hidden" name="ussuario" value=<%=id_u %>>
-	<br> <input type="submit" value="Subir">
+	<input type="hidden" name="ussuario" value=<%=id_u%>> <br>
+	<input type="submit" value="Subir">
 </form>
 <br>
 <%
 	for (Usuario f : traer_ima) {
 %>
-<div style="display: inline-block;" col-lg-3 col-md-4 col-sm-6 col-xs-12
-	col-12text-centerfoto_home">
+<div style="display: inline-block;" col-lg-3 col-md-4 col-sm-6 col-xs-12col-12text-centerfoto_home">
 	<img src="img/<%=f.getUrl()%>" width="200" height="150"><br>
 	<label>Likes:</label><span><%=f.getSumlikes()%> </span><br> <label>Estilo:</label>
 	<span><%=f.getEstilo()%></span><br> <label>Fecha:</label><span><%=f.getFecha()%>
