@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.mysql.jdbc.Connection;
 
 import conexion.BDConn;
+import controladores.ImgController;
 import controladores.UsuarioController;
 
 /**
@@ -34,40 +36,24 @@ public class likes extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		int id_img = 0;
-		int usid = 0;
-		boolean vdd=false;
-
-		if (request.getParameter("imglike") != null) {
-			id_img = Integer.parseInt(request.getParameter("imglike"));
-			usid = Integer.parseInt(request.getParameter("usid"));
-			
-			vdd = UsuarioController.bool(id_img,usid);
-			
-			if (vdd == true) {
-				UsuarioController.deletelike(id_img,usid);
-				response.sendRedirect("Home.jsp");
-			} else{
-				UsuarioController.addlike(id_img,usid);
-				response.sendRedirect("Home.jsp");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id_img = Integer.parseInt(request.getParameter("imglike"));
+		int usid = Integer.parseInt(request.getParameter("usid"));
+		boolean vdd = UsuarioController.bool(id_img, usid);		
+		
+		if (vdd == true) {
+			UsuarioController.deletelike(id_img, usid);
+			System.out.println("like eliminado");
+		} else {
+			System.out.println("like añadido");
+			UsuarioController.addlike(id_img, usid);
 		}
-		if (request.getParameter("imglikeau") != null) {
-			id_img = Integer.parseInt(request.getParameter("imglikeau"));
-			usid = Integer.parseInt(request.getParameter("usid"));
-			
-			vdd = UsuarioController.bool(id_img,usid);
-			
-			if (vdd == true) {
-				UsuarioController.deletelike(id_img,usid);
-				response.sendRedirect("perfil_autor.jsp");
-			}else {
-				UsuarioController.addlike(id_img,usid);
-				response.sendRedirect("perfil_autor.jsp");
-			}
-		}
-	}
+		
+		int nuevosLikes = ImgController.getLikes(id_img);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+	    response.getWriter().write("{\"result\":\"ok\", \"likes\": "+ nuevosLikes +"}");
+		
 	}
 
 	/**
@@ -77,6 +63,5 @@ public class likes extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 	}
 }

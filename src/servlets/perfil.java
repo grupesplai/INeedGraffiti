@@ -35,16 +35,14 @@ public class perfil extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		int id_user = Integer.parseInt(request.getParameter("id_usu"));
-		int id_au=0;
 
 			if(request.getParameter("id_autor") != null) {
-				id_au = Integer.parseInt(request.getParameter("id_autor"));
-				session.setAttribute("id_usu", id_au);
+				id_user = Integer.parseInt(request.getParameter("id_autor"));
+				session.setAttribute("id_usu", id_user);
 			}else {
 				session.setAttribute("id_usu", id_user);
 			}
 			response.sendRedirect("perfil.jsp");
-		
 	}
 
 	/**

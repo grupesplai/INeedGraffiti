@@ -65,6 +65,7 @@ public class UsuarioController {
 		}
 		return uList;
 	}
+
 	public static List<Usuario> getPerfil2(int id_au) {
 
 		List<Usuario> uList = new ArrayList<Usuario>();
@@ -88,14 +89,14 @@ public class UsuarioController {
 
 		List<Usuario> listimagen = new ArrayList<Usuario>();
 
-		String sql = "SELECT imagenes,description_imagen,estilo,fecha, SUM(bolean) AS sumlikes  FROM imagenes LEFT JOIN likesimg ON imagenes.id_imagenes=likesimg.id_img WHERE imagenes.id_usuario='" + id_usu + "' GROUP BY id_imagenes ORDER BY fecha_de_pubblication DESC ";
+		String sql = "SELECT id_imagenes,imagenes,description_imagen,estilo,fecha, SUM(bolean) AS sumlikes  FROM imagenes LEFT JOIN likesimg ON imagenes.id_imagenes=likesimg.id_img WHERE imagenes.id_usuario='" + id_usu + "' GROUP BY id_imagenes ORDER BY fecha_de_pubblication DESC ";
 		
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				listimagen.add(new Usuario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString("sumlikes")));
+				listimagen.add(new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt("sumlikes")));
 			}
 		}
 		return listimagen;
@@ -104,15 +105,15 @@ public class UsuarioController {
 	public static List<Usuario> getImagen2(int id_au) throws SQLException {
 
 		List<Usuario> listimagen = new ArrayList<Usuario>();
-		String sql = "SELECT imagenes,description_imagen,estilo,fecha, SUM(bolean) AS sumlikes  FROM imagenes LEFT JOIN likesimg ON imagenes.id_imagenes=likesimg.id_img WHERE imagenes.id_usuario='" + id_au + "' GROUP BY id_imagenes ORDER BY fecha_de_pubblication DESC ";
+		String sql = "SELECT id_imagenes,imagenes,description_imagen,estilo,fecha, SUM(bolean) AS sumlikes  FROM imagenes LEFT JOIN likesimg ON imagenes.id_imagenes=likesimg.id_img WHERE imagenes.id_usuario='" + id_au + "' GROUP BY id_imagenes ORDER BY fecha_de_pubblication DESC ";
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				listimagen.add(new Usuario(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4),
-						rs.getString(5), rs.getString(6)));
+				listimagen.add(new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getInt("sumlikes")));
 			}
 		}
 		return listimagen;
@@ -121,8 +122,8 @@ public class UsuarioController {
 	public static List<Anuncios> getAnuncio(int id_usu) throws SQLException {
 
 		List<Anuncios> listimagen = new ArrayList<Anuncios>();
-		String sql = "SELECT usuario,muro,description_muro,fecha_muro FROM muros JOIN usuario ON muros.id_usuario=usuario.id_usuario WHERE muros.id_usuario='"
-				+ id_usu + "' ORDER BY fecha_muro DESC";
+		String sql = "SELECT usuario,muro,description_muro,fecha_muro FROM muros JOIN usuario "
+				+ "ON muros.id_usuario=usuario.id_usuario WHERE muros.id_usuario='"+ id_usu + "' ORDER BY fecha_muro DESC";
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 
@@ -131,26 +132,6 @@ public class UsuarioController {
 			while (rs.next()) {
 				listimagen.add(new Anuncios(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
 			}
-		}
-		return listimagen;
-	}
-
-	public static List<Anuncios> getAnuncio2(int id_au) throws SQLException {
-
-		List<Anuncios> listimagen = new ArrayList<Anuncios>();
-		String sql = "SELECT usuario,muro,description_muro,fecha_muro FROM muros JOIN usuario ON muros.id_usuario=usuario.id_usuario WHERE muros.id_usuario='"
-				+ id_au + "' ORDER BY fecha_muro DESC";
-
-		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-
-			ResultSet rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				listimagen.add(new Anuncios(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
-			}
-		} catch (Exception e) {
-			String s = e.getMessage();
-			System.out.println(s);
 		}
 		return listimagen;
 	}
@@ -158,7 +139,7 @@ public class UsuarioController {
 
 	public static void deletelike(int imglike, int usid) {
 
-		String sql = "DELETE FROM likesimg WHERE likesimg.id_img='"+ imglike + "' AND likesimg.id_usuario='" + usid + "'";
+		String sql = "DELETE FROM likesimg WHERE likesimg.id_img="+ imglike + " AND likesimg.id_usuario=" + usid;
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 			stmt.executeUpdate(sql);
@@ -185,7 +166,7 @@ public class UsuarioController {
 
 	public static boolean bool(int imglike, int usid) {
 
-		String sql = "SELECT bolean FROM likesimg WHERE id_img='" + imglike + "'  AND id_usuario='" + usid + "'";
+		String sql = "SELECT bolean FROM likesimg WHERE id_img=" + imglike + " AND id_usuario=" + usid;
 		int resp = 3;
 		boolean vdd;
 
@@ -251,5 +232,4 @@ public class UsuarioController {
 			System.out.println(s);
 		}
 	}
-	
 }
