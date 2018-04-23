@@ -30,7 +30,6 @@ public class buscaImagen extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
 		int id_user = Integer.parseInt(request.getParameter("id_user"));
 		int id_img = Integer.parseInt(request.getParameter("id_img"));

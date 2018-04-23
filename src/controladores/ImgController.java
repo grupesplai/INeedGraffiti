@@ -72,9 +72,9 @@ public class ImgController {
 		return listimagen;
 	}
 	
-	public static int getLikes(int id_img) {//query para mejorar
+	public static int getLikes(int id_img) {
 		int resp = 0;
-		String sql ="SELECT COUNT(bolean) sumalikes FROM likesimg  WHERE id_img='"+id_img+"' GROUP BY id_img";			
+		String sql ="SELECT COUNT(id_img) sumalikes FROM likesimg  WHERE id_img='"+id_img+"' GROUP BY id_img";			
 		
 		try (Connection conn = BDConn.getConn();Statement stmt = conn.createStatement()) {
 			

@@ -1,30 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="ISO-8859-1"%>
+	
+<%@ include file="parts/head.jsp"%>
+		<%List<home> tops = ImgController.imgTop();%>
+<body>
+<%@ include file="parts/barraMenu.jsp"%>
+	<div class="container" style="padding-top: 60px">
 <%
-	int id_u;
+	int id_u = 0;
 	if (session.getAttribute("id_usu") != null && (int) session.getAttribute("id_usu") != 0) {
 		id_u = (int) session.getAttribute("id_usu");
 %><%@ include file="parts/sesion.jsp"%>
+<div>
+	<a href="login">LOG-OUT</a>
+</div>
 <%
 	} else {
-		id_u = 0;
-		out.println("Bienvenido User: <a href='editar.jsp'> Falta LOGIN</a> con ID: " + id_u);
+		out.println("Bienvenido User: <a href='editar.jsp'> Falta LOG</a> con ID: " + id_u + "<br>");
 	}
 %>
-<%@ include file="parts/barraMenu.jsp"%>
-<%
-	if (id_u != 0) {
-
-	}
-%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Subir imágenes</title>
-</head>
-<body>
-
 
 <form enctype="multipart/form-data" action="subirimg" method="post" >
 Seleciona una imagen:<input type="file" name="file">
@@ -44,6 +38,7 @@ Seleciona una imagen:<input type="file" name="file">
 	
 <input type="submit" value="Publicar">
 </form>
-
+</div>
+	<%@ include file="parts/footerAjax.jsp"%>
 </body>
 </html>

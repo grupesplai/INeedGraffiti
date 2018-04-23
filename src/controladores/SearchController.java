@@ -15,7 +15,9 @@ public class SearchController {
 	public static List<Search> getSearch(String busqueda) {
 
 		List<Search> uList = new ArrayList<Search>();
-		String sql = "SELECT id_imagenes,imagenes.id_usuario,imagenes,usuario,description_imagen,estilo FROM imagenes JOIN usuario ON imagenes.id_usuario=usuario.id_usuario WHERE ( 1=2";
+		String sql = "SELECT id_imagenes,imagenes.id_usuario,imagenes,usuario,description_imagen,estilo " + 
+				"FROM imagenes JOIN usuario ON imagenes.id_usuario=usuario.id_usuario " + 
+				"JOIN estilos ON estilos.id_estilo=imagenes.id_estilo WHERE ( 1=2";
 			
 			String[] parts = busqueda.split(" ");
 		

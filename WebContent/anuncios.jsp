@@ -1,21 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="modelos.*"%>
-<%@ page import="controladores.*"%>
-<%@ page import="servlets.*"%>
-<%@ page import="java.util.List"%>
-<%
-	List<Anuncios> anun = AnuncioController.allAnuncios();
-%>
+	
+<%@ include file="parts/head.jsp"%>
+		<%List<Anuncios> anun = AnuncioController.allAnuncios();%>
+<body>
 <%@ include file="parts/barraMenu.jsp"%>
-	<%
-	int id_u = 0;
+	<div class="container" style="padding-top: 60px">
+<%
+	int id_u;
 	if (session.getAttribute("id_usu") != null && (int) session.getAttribute("id_usu") != 0) {
 		id_u = (int) session.getAttribute("id_usu");
 %><%@ include file="parts/sesion.jsp"%>
+<div>
+	<a href="login">LOG-OUT</a>
+</div>
 <%
 	} else {
-		out.println("Bienvenido User: <a href='editar.jsp'> Falta LOG</a> con ID: " + id_u+"<br>");
+		id_u=0;
+		out.println("Bienvenido User: <a href='editar.jsp'> Falta LOG</a> con ID: " + id_u + "<br>");
 	}	%>
 	<div class="row">
 	<%
@@ -34,5 +36,6 @@
 		%>
 </div>
 </div>
+<%@ include file="parts/footerAjax.jsp"%>
 </body>
 </html>

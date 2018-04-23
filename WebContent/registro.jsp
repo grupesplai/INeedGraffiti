@@ -1,85 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!doctype html>
-<html lang="es">
-<head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<%@ include file="parts/head.jsp"%>
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-<script src="graffitiScript.js"></script>
-<title>Nuevo Usuario</title>
-</head>
 <body>
-	<div class="container">
+<%@ include file="parts/barraMenu.jsp"%>
+	<div class="container" style="padding-top: 60px">
+<%
+	int id_u;
+	if (session.getAttribute("id_usu") != null && (int) session.getAttribute("id_usu") != 0) {
+		id_u = (int) session.getAttribute("id_usu");
+%><%@ include file="parts/sesion.jsp"%>
+<div><a href="login">LOG-OUT</a>
+</div>
+<%
+	} else {
+		id_u = 0;
+		out.println("Bienvenido User: <a href='editar.jsp'> Falta LOG</a> con ID: " + id_u + "<br>");
+	}	%>
+
+<%@ include file="parts/barraMenu.jsp"%>
 		<h1>Nuevo Usuario</h1>
 		<hr>
 		<form action="registro" method="post">
+		<div style="padding-left:150px">
 			<div class="form-group">
 				<label for="nombreUsuario" >Nombre</label>
-				<input type="text" name="nombreUsuario"
-					class="form-control" id="nombreUsuario" placeholder="nombre">
+				<input type="text" name="nombreUsuario" style="width:30%;height:34px"
+					class="form-control" id="nombreUsuario" placeholder="Nombre">
 			</div>
 			
 			<div class="form-group">
 				<label for="apellidosUsuario" >Apellido</label>
-				<input type="text" name="apellidosUsuario"
-					class="form-control" id="apellidosUsuario" placeholder="Apellido">
+				<input type="text" name="apellidosUsuario"  style="width:30%;height:34px"
+					class="form-control" id="apellidosUsuario" placeholder="Apellidos">
 			</div>
 			<div class="form-group">
 				<label for="mailUsuario" >Mail</label>
-				<input type="text" name="mailUsuario"
-					class="form-control" id="mailUsuario" placeholder="mail">
+				<input type="text" name="mailUsuario" style="width:30%;height:34px"
+					class="form-control" id="mailUsuario" placeholder="e-mail">
 			</div>
 			<div class="form-group">
 				<label for="movilUsuario" >movil</label>
-				<input type="text" name="movilUsuario"
-					class="form-control" id="movilUsuario" placeholder="movil">
+				<input type="text" name="movilUsuario" style="width:30%;height:34px"
+					class="form-control" id="movilUsuario" placeholder="Teléfono">
 			</div>
 			
 			<div class="form-group">
 				<label for="nickUsuario" >Nombre de usuario</label>
-				<input type="text" name="nickUsuario"
+				<input type="text" name="nickUsuario" style="width:30%;height:34px"
 					class="form-control" id="nickUsuario" placeholder="nombre de usuario">
 			</div>
 			
 			
 			<div class="form-group">
 				<label for="passwordUsuario" >Contraseña</label>
-				<input type="password" name="passwordUsuario"
+				<input type="password" name="passwordUsuario" style="width:30%;height:34px"
 					class="form-control" id="passwordUsuario" placeholder="Contraseña">
 			</div>
 			<div class="form-group">
 				<label for="confirmPassword" >Repite la Contraseña</label>
-				<input type="password" name="confirmPassword"
+				<input type="password" name="confirmPassword" style="width:30%;height:34px"
 					class="form-control" id="confirmPassword" placeholder="Repite la Contraseña">
 			</div>
 			
 			
 			<button type="submit" class="btn btn-primary" id="registrar">Enviar</button>
+		</div>
 		</form>
 	</div>
-
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
+	<%@ include file="parts/footerAjax.jsp"%>
 </body>
 </html>

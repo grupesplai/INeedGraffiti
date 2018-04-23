@@ -1,14 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="modelos.*"%>
-<%@ page import="controladores.*"%>
-<%@ page import="servlets.*"%>
-<%@ page import="java.util.List"%>
-
+	
+<%@ include file="parts/head.jsp"%>
+		<%List<Anuncios> anun = AnuncioController.allAnuncios();%>
+<body>
+<%@ include file="parts/barraMenu.jsp"%>
+	<div class="container" style="padding-top: 60px">
 <%
-	int id_u = (Integer) session.getAttribute("id_em");
-	int id_recep = (Integer) session.getAttribute("id_re");
-
+	int id_u;
+	int id_recep;
+	if (session.getAttribute("id_em") != null && (int) session.getAttribute("id_em") != 0) {
+		id_u = (Integer) session.getAttribute("id_em");
+		id_recep = (Integer) session.getAttribute("id_re");
+%><%@ include file="parts/sesion.jsp"%>
+<div>
+	<a href="login">LOG-OUT</a>
+</div>
+<%
+	} else {
+		id_u= 0;
+		id_recep=0;
+		out.println("Bienvenido User: <a href='editar.jsp'> Falta LOG</a> con ID: " + id_u + "<br>");
+	}	%>
+<%
 	List<Chat> chatList = ChatController.getChat(id_u, id_recep);/**en la base de datos están cambiados nombre emisor y receptor CUIDADO!*/
 %>
 <%@ include file="parts/barraMenu.jsp"%>
@@ -36,5 +50,6 @@
 		</form>
 	</div>
 	</div>
+		<%@ include file="parts/footerAjax.jsp"%>
 </body>
 </html>

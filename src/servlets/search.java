@@ -38,12 +38,7 @@ public class search extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		session = request.getSession();
 		String busqueda = request.getParameter("Buscar");
-		//String busqueda2 = request.getParameter("Buscar");
-		//String busqueda3 = request.getParameter("Buscar");
-
 		session.setAttribute("Buscar", busqueda);
-		//session.setAttribute("Buscar2", busqueda2);
-		//session.setAttribute("Buscar3", busqueda3);
 		response.sendRedirect("busqueda.jsp");
 	}
 
