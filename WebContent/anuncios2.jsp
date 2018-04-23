@@ -17,10 +17,9 @@
 		out.println("Bienvenido User: <a href='editar.jsp'> Falta LOG</a> con ID: " + id_u);
 	}
 	
-	List<home> traer_ima = ImgController.getImage(id_autor);
+	List<Anuncios> traer_anuncio = UsuarioController.getAnuncio(id_autor);
 	
 %>
-
     <div class="sidebar sidebar-chat right sidebar-size-2 sidebar-offset-0 chat-skin-dark sidebar-visible-mobile" id="sidebar-chat">
       <div class="split-vertical">
         <div class="chat-search">
@@ -226,16 +225,15 @@
                   <a href="http://themekit.frontendmatter.com/dist/themes/social-3/user-public-timeline.html#">Helio Bray</a>
                 </div>
                 <ul class="cover-nav">
-
-                  <li class="active">
+                  <li>
                     <a href="perfil.jsp">
-                      <i class="fas fa-briefcase"></i> Graffitis</a>
+                      <i class="fas fa-briefcase"></i> Portfolio</a>
                   </li>
                   <li>
                     <a href="about.jsp">
                       <i class="fas fa-user"></i> Sobre mi</a>
                   </li>
-                  <li>
+                  <li class="active">
                     <a href="anuncios2.jsp">
                       <i class="fas fa-warehouse"></i> Muros</a>
                   </li>
@@ -245,33 +243,15 @@
 
 <div class="timeline row" data-toggle="isotope" style="position: relative; height: 1967.74px;">
                 <%
-		for (home g : traer_ima) {
+		for (Anuncios g : traer_anuncio) {
 	%> <div class="col-xs-12 col-md-6 col-lg-4 item">
          <div class="timeline-block elementoHome" style="position: relative; width:330px; height:254px">
 			<a href="buscaImagen?id_img=<%=g.getIdImagen()%>&id_user=<%=id_u%>">	
 			<img src="img/<%=g.getUrl()%>" style="width:330px; height:250px" alt="place" class="img-responsive"> </a>
-			<%
-				if (id_u != 0) {
-						String clase = "";
-						if (UsuarioController.bool(g.getIdImagen(), id_u)) {
-							clase = "corazonLleno";
-						}else{
-							clase = "fondo";
-						}
-			%>
-			<div class="posAbs">
-				<i class="fas fa-heart botonlike btn-xs btn-alert <%=clase%>"
-					style="font-size: 30px" data-idimagen="<%=g.getIdImagen()%>"
-					data-idu="<%=id_u%>"></i>
-			</div>
-			<%
-				}
-			%>
 		<div class="panel-body panel-boxed pull-left" style="padding-left:20px; margin-bottom:20px">
-			<h5 class="text-portfolio-img" style="font-style:italic" >Le ha gustado a <b><span class="numlikes"><%=ImgController.getLikes(g.getIdImagen())%></span></b> personas</h5>
+			
 			<h4 class="text-portfolio-img">Autor: <a href="perfil?id_autor=<%=g.getIdUsuario()%>&id_usu=<%=id_u%>" style="color:black;font-style:italic"><%=g.getNomUsuario()%></a></h4>
 			<h4 class="text-portfolio-img">Ubicación: <a href="#" style="color:black;font-style:italic">Barcelona</a></h4> 
-		<label>Estilo:</label><span><%=g.getEstilo()%></span><br> 
 		<label>Fecha:</label><span><%=g.getFecha()%></span><br>
 		<label>Descripción:</label><div><%=g.getDescripcion()%></div>
 		</div></div>
@@ -279,9 +259,6 @@
 	<%
 		}
 	%>
-
-</div>
-</div>
               </div>
              </div>
           </div>
