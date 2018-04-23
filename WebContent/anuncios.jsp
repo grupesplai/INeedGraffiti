@@ -26,6 +26,17 @@
 		<img src="img/<%=g.getUrl()%>" width="250" height="180"></a><br>
 			<label>Autor:</label><a href="perfil"><%=g.getNomUsuario()%><%=g.getIdImagen()%></a><br>
 			<label>Fecha:</label><span><%=g.getFecha()%> </span><br>
+		
+		<% 
+if (g.getIdUsuario() == id_u){%>
+	
+	<form action="delete" method="get">
+	<input type="hidden" name="id_img" value=<%=g.getIdImagen() %>>
+	<button type="submit" class="btn btn-primary" id="delete">Eliminar</button>
+		</form>
+<%}
+%>
+
 		<%if (id_u != 0) {%>
 		<a href="pasaId?id_usu=<%=id_u%>&id_recep=<%=g.getIdUsuario()%>">Contactar</a><br>
 		<%}
@@ -33,6 +44,6 @@
 		}
 		%>
 </div>
-</div>
+
 </body>
 </html>

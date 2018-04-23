@@ -51,4 +51,18 @@ public class AnuncioController {
 		}
 		return anun;
 	}
+	
+	public static void delete(int id_img) {
+
+		String sql = "DELETE FROM muros WHERE id_muros='" + id_img + "'";
+
+		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
+			stmt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			String s = e.getMessage();
+			System.out.println(s);
+		}
+
+	}
 }

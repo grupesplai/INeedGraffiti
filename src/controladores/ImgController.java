@@ -63,4 +63,17 @@ public class ImgController {
 				System.out.println(s);
 			}
 	}
+	public static void delete(int id_img) {
+
+		String sql = "DELETE FROM imagenes WHERE id_imagenes='" + id_img + "'";
+
+		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
+			stmt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			String s = e.getMessage();
+			System.out.println(s);
+		}
+
+	}
 }

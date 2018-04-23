@@ -6,7 +6,9 @@
 <%@ page import="java.util.List"%>
 
 <% 
+
 int id_u = 0;
+
 int id_img = (Integer) session.getAttribute("id_img");
 if(session.getAttribute("id_usu") != null && (int)session.getAttribute("id_usu") != 0){
 	id_u = (int) session.getAttribute("id_usu");
@@ -25,7 +27,15 @@ for(home f: desc_ima){
 <label>Estilo:</label>	<span><%= f.getEstilo() %></span><br>
 <label>Fecha:</label> 		<span><%= f.getFecha()%> </span><br>
 <% 
-if(id_u != 0){%>
+if (f.getIdUsuario() == id_u){%>
+	
+	<form action="delete" method="get">
+	<input type="hidden" name="id_img" value=<%=f.getIdImagen() %>>
+	<button type="submit" class="btn btn-primary" id="delete">Eliminar</button>
+		</form>
+<%}
+%>
+<%if(id_u != 0){%>
 <a href="pasaId?id_usu=<%=id_u%>&id_recep=<%=f.getIdUsuario()%>">Contactar</a><br>
 <%}%>
 <textarea><%= f.getDescripcion()%> 	</textarea>
