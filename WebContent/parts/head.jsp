@@ -4,9 +4,7 @@
 <%@ page import="controladores.*"%>
 <%@ page import="servlets.*"%>
 <%@ page import="java.util.List"%>
-<%
-	List<home> tops = ImgController.imgTop();
-%>
+
 <!DOCTYPE html>
 <html class="st-layout ls-top-navbar ls-bottom-footer hide-sidebar sidebar-r2" lang="en">
 <head>
@@ -91,13 +89,13 @@
   <script src="Profile_files/jquery.ui.map.services.js.descarga"></script>
   <script src="Profile_files/jquery.ui.map.extensions.js.descarga"></script>
   <script src="Profile_files/jquery.ui.map.js.descarga"></script>
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+  
 
   <title>ThemeKit</title>
-  <link href="./Profile_files/all.css" rel="stylesheet">
-
-  <link href="./Profile_files/app.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
-    crossorigin="anonymous">
+  <link href="Profile_files/all.css" rel="stylesheet">
+  <link href="Profile_files/app.css" rel="stylesheet">
 
 
   <style type="text/css">

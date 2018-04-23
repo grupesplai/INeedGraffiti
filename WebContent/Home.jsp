@@ -5,7 +5,7 @@
 <form action="login" method="post">
 	<input name="usuario"> <input name="password"> <input
 		type="submit" value="Entrar">
-</form>
+</form>	
 <%
 	int id_u = 0;
 	if (session.getAttribute("id_usu") != null && (int) session.getAttribute("id_usu") != 0) {
@@ -19,6 +19,7 @@
 		out.println("Bienvenido User: <a href='editar.jsp'> Falta LOG</a> con ID: " + id_u + "<br>");
 	}
 	
+	List<home> tops = ImgController.imgTop();
 %>
     <div class="sidebar left sidebar-size-2 sidebar-offset-0 sidebar-visible-desktop sidebar-visible-mobile sidebar-skin-dark"
           id="sidebar-menu" data-type="collapse">
@@ -629,9 +630,6 @@
 			<%
 				}
 			%>
-			
-		
-			
 		<div class="panel-body panel-boxed pull-left" style="padding-left:20px; margin-bottom:20px">
 			<h5 class="text-portfolio-img" style="font-style:italic" >Le ha gustado a <b><span class="numlikes"><%=g.getLikes()%></span></b> personas</h5>
 			<h4 class="text-portfolio-img">Autor: <a href="perfil?id_autor=<%=g.getIdUsuario()%>&id_usu=<%=id_u%>" style="color:black;font-style:italic"><%=g.getNomUsuario()%></a></h4>
@@ -640,11 +638,10 @@
 	</div>
 	<%
 		}
-	%><br> <a href="anuncios.jsp">anuncios</a><br> <a
-		href="pasaId?id_usu=<%=id_u%>&id_usua=<%=id_u%>">historial de
-		mensajes</a><br> <a href="addImage?id_usu=<%=id_u%>">Añadir
-		imagenes</a><br> <a href="registro.jsp">Registrarse</a>
-                </div>
+	%></div><br> <a href="anuncios.jsp">anuncios</a><br> <a
+		href="pasaId?id_usu=<%=id_u%>&id_usua=<%=id_u%>">historial de mensajes</a><br> 
+		<a href="addImage?id_usu=<%=id_u%>">Añadir imagenes</a><br> 
+		<a href="registro.jsp">Registrarse</a>
               </div>
             </div>
           </div>
