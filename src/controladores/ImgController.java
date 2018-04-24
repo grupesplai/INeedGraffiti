@@ -34,7 +34,7 @@ public class ImgController {
 		return theList;
 	}
 	
-	public static String unaImagen(int as) {//trae todas las imagenes a Home.jsp
+	public static String unaImagen(int as) {//trae una las imagenes a Home.jsp
 
 		String resp = "";
 		
@@ -56,7 +56,7 @@ public class ImgController {
 		List<home> listimagen = new ArrayList<home>();
 		String sql ="SELECT id_imagenes,imagenes,description_imagen,usuario.id_usuario,usuario,estilo,fecha"
 				+ " FROM imagenes JOIN usuario ON imagenes.id_usuario=usuario.id_usuario\r\n" + 
-				"JOIN estilos ON estilos.id_estilo=imagenes.id_estilo WHERE imagenes.id_usuario ='"+ img +"'";
+				"JOIN estilos ON estilos.id_estilo=imagenes.id_estilo WHERE imagenes.id_imagenes ='"+ img +"'";
 		
 		try (Connection conn = BDConn.getConn();Statement stmt = conn.createStatement()) {
 			

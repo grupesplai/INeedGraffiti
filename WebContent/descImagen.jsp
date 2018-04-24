@@ -7,7 +7,7 @@
 
 <%
 	int id_u;
-	int id_img = (Integer) session.getAttribute("id_img");
+	int id_img = (int) session.getAttribute("id_img");
 	if (session.getAttribute("id_usu") != null && (int) session.getAttribute("id_usu") != 0) {
 		id_u = (int) session.getAttribute("id_usu");
 	%><%@ include file="parts/sesion.jsp"%>
@@ -38,7 +38,6 @@
 			style="font-size: 30px" data-idimagen="<%=f.getIdImagen()%>"
 			data-idu="<%=id_u%>"></i>
 	</div>
-
 	<%
 		}
 	%>
@@ -63,12 +62,13 @@
 <%
 	}
 %>
-<textarea><%=f.getDescripcion()%> 	</textarea>
+<label>Descripción: </label><span> <%=f.getDescripcion()%> </span>
 <%
 	}
 	List<Comentario> listaComentarios = ComentarioController.getComentario(id_img);
 	for (Comentario c : listaComentarios) {
 %>
+<textarea class="form-control" style="resize: none;width:30%" placeholder="Deja un comentario" disabled><%=c.getComentario()%> </textarea>
 <br>
 <label>idImagen:</label>
 <span><%=c.getIdOrigen()%> </span>
@@ -79,7 +79,6 @@
 <label>Nombre del usuario:</label>
 <span><%=c.getUsuario()%> </span>
 <br>
-<textarea><%=c.getComentario()%> </textarea>
 <%
 	}
 	if (id_u != 0) {
@@ -92,7 +91,7 @@
 		<input type="hidden" name="tipusComentari" value="coment_img"> 
 		<input type="hidden" name="id_img" value="<%=id_img%>"> 
 		<input type="hidden" name="id_usu" value="<%=id_u%>"> 
-		<input type="text" style="width:377px;height:122px" name="comentario" class="form-control">
+		<textarea style="resize: none;width:377px;height:122px" name="comentario" placeholder="Deja un comentario" class="form-control"></textarea>
 	</div>
 	<button type="submit" class="btn btn-primary">Comentar</button>
 </form>
@@ -106,9 +105,9 @@
 		<input type="hidden" name="tipusComentari" value="coment_muro"> 
 		<input type="hidden" name="id_img" value="<%=id_img%>"> 
 		<input type="hidden" name="id_usu" value="<%=id_u%>"> 
-		<input type="text" style="width:377px;height:122px" name="comentario" class="form-control">
+		<textarea style="resize: none;width:377px;height:122px" name="comentario" placeholder="Deja un comentario" class="form-control"></textarea>
 	</div>
-	<button type="submit" class="btn btn-primary" id="comentarMuro">Comentar</button>
+	<button type="submit" class="btn btn-primary" id="comentarMuro" >Comentar</button>
 </form>
 <hr>
 <%

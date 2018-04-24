@@ -26,7 +26,7 @@
 			<div class="form-group">
 				<label for="nombreUsuario" >Nombre</label>
 				<input type="text" name="nombreUsuario" style="width:30%;height:34px"
-					class="form-control" id="nombreUsuario" placeholder="Nombre">
+					 class="form-control" id="nombreUsuario" placeholder="Nombre">
 			</div>
 			
 			<div class="form-group">

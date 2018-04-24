@@ -27,7 +27,7 @@
 		<ul>
 			<%
 				for (Chat h: hist) {
-			%><li><a href="pasaId?id_emi=<%=id_u%>&id_recep=<%=h.getId_recept()%>"><%=h.getId_recept()%> - <%=ChatController.getNomUsu(h.getId_recept())%></a></li>
+			%><li><a href="pasaId?id_usu=<%=id_u%>&id_recep=<%=h.getId_recept()%>"><%=h.getId_recept()%> - <%=ChatController.getNomUsu(h.getId_recept())%></a></li>
 			<% } %>
 		</ul>
 		</div>

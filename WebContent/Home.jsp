@@ -56,8 +56,8 @@ for (home g : tops) {
 </div>
 <%
 }
-%></div><br> <a href="anuncios.jsp">anuncios</a><br> <a
-href="pasaId?id_usu=<%=id_u%>&id_usua=<%=id_u%>">historial de mensajes</a><br> 
+%></div><br> <a href="anuncios.jsp">anuncios</a><br> 
+<a href="pasaId?id_usu=<%=id_u%>&id_usua=<%=id_u%>">historial de mensajes</a><br> 
 <a href="addImage?id_usu=<%=id_u%>">Añadir imagenes</a><br> 
 <a href="registro.jsp">Registrarse</a>
 
