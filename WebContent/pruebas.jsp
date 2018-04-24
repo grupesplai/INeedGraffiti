@@ -9,6 +9,46 @@
 	String busqueda = (String) session.getAttribute("Buscar");
 	List<Search> profile = SearchController.getSearch(busqueda);
 %>
+<%@ include file="parts/barraMenu.jsp"%>
+<%
+	
+%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Resultados</title>
+</head>
+<body>
+	<div class="row">
+		<h1>Resultados:</h1>
+		<%
+			for (Search user : profile) {
+		%><div style="display: inline-block;" col-lg-3 col-md-4 col-sm-6
+			col-xs-12 col-12text-centerfoto_home">
+			<a href="buscaImagen?id_img=<%=user.getImagenes()%>"><img
+				src="img/<%=user.getImagenes()%>" width="200" height="150"> </a><br>
+			<br> <label><%=user.getUsuario()%> </label><br> <label>
+				<%=user.getEstilo()%></label><br> <label><%=user.getDescripcion()%></label><br>
+		</div>
+		<%
+			}
+		%>
+</body>
+</html>
+
+------------------------------------
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="modelos.*"%>
+<%@ page import="controladores.*"%>
+<%@ page import="servlets.*"%>
+<%@ page import="java.util.List"%><%@ page import="controladores.*"%>
+
+<%
+	String busqueda = (String) session.getAttribute("Buscar");
+	List<Search> profile = SearchController.getSearch(busqueda);
+%>
 <!DOCTYPE html>
 <!-- saved from url=(0082)http://themekit.frontendmatter.com/dist/themes/social-3/user-public-timeline.html# -->
 <html class="st-layout ls-top-navbar ls-bottom-footer hide-sidebar sidebar-r2" lang="en">
@@ -105,11 +145,18 @@
   <meta name="author" content="">
   <title>ThemeKit</title>
 
+  <!-- Vendor CSS BUNDLE
+    Includes styling for all of the 3rd party libraries used with this module, such as Bootstrap, Font Awesome and others.
+    TIP: Using bundles will improve performance by reducing the number of network requests the client needs to make when loading the page. -->
   <link href="./Profile_files/all.css" rel="stylesheet">
+
 
   <link href="./Profile_files/app.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
     crossorigin="anonymous">
+
+
+
 
   <style type="text/css">
     .jqstooltip {
@@ -158,7 +205,31 @@
 <body class="breakpoint-1024">
 
   <!-- Wrapper required for sidebar transitions -->
- 
+  <div class="st-container">
+
+    <div class="navbar navbar-main navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="http://themekit.frontendmatter.com/dist/themes/social-1/index.html#sidebar-menu" data-effect="st-effect-1" data-toggle="sidebar-menu"
+            class="toggle pull-left visible-xs">
+            <i class="fa fa-bars"></i>
+          </a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="http://themekit.frontendmatter.com/dist/themes/social-1/index.html#sidebar-chat" data-toggle="sidebar-menu" data-effect="st-effect-1"
+            class="toggle pull-right visible-xs ">
+            <i class="fa fa-comments"></i>
+          </a>
+          <a class="navbar-brand navbar-brand-primary hidden-xs" href="http://themekit.frontendmatter.com/dist/themes/social-1/index.html">ThemeKit</a>
+        </div>
+
+      </div>
+    </div>
+
 
     <!-- Fixed navbar -->
     <div class="navbar navbar-main navbar-primary navbar-fixed-top" role="navigation">
@@ -364,17 +435,17 @@
                   </script>
                   
                   <div class="timeline row" data-toggle="isotope">
+                    
                     <%
 			for (Search user : profile) {
 		%>
-                       <div class="col-xs-12 col-md-6 col-lg-4 item">
+                    <div class="col-xs-12 col-md-6 col-lg-4 item">
 
                       <div class="timeline-block">
- 
-                
+
                         <div class="panel panel-default relative">
                           <div class="panel-body panel-boxed text-center">
-                            <a href="buscaImagen?id_img=<%=user.getIdimagen()%>"><img src="img/<%=user.getImagenes()%>" alt="place" width="200" height="150" class="img-responsive"></a>
+                            <a href="buscaImagen?id_img=<%=user.getImagenes()%>"></a><img src="img/<%=user.getImagenes()%>" alt="place" class="img-responsive">
                             <i class="far fa-heart cor "></i>
                             <h4 class="text-muro-lugar pull-right">23 de abril, Barcelona</h4>
                             <h4 class="text-imagen-usuario pull-left"><%=user.getUsuario()%></h4>
@@ -388,6 +459,8 @@
                       </div>
                     </div>
                    
+                    <div class="col-12 col-md-12 col-lg-12 item">
+                      
                   </div>
 
                   </div>
