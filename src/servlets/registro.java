@@ -16,6 +16,7 @@ import controladores.UsuarioController;
 @WebServlet("/registro")
 public class registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	HttpSession session;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -31,8 +32,10 @@ public class registro extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		session = request.getSession();
+				int id_usu = Integer.parseInt( request.getParameter("id_usu"));
+				session.setAttribute("id_usu",id_usu);
+				response.sendRedirect("editar.jsp");
 	}
 
 	/**
@@ -48,10 +51,17 @@ public class registro extends HttpServlet {
 		String movil = request.getParameter("movilUsuario");
 		String nick = request.getParameter("nickUsuario");
 		String password = request.getParameter("passwordUsuario");
-		UsuarioController.creaUsuario(nombre, apellidos, mail, movil, nick, password);
+		
+		if(request.getParameter("modificar") != null ) {//si viene de modificar/editar
+			int id_u= Integer.parseInt(request.getParameter("modificar"));
+			UsuarioController.modificarUsuario(id_u,nombre, apellidos, mail, movil, nick, password);
+			session.setAttribute("id_usu", id_u);
+			response.sendRedirect("perfil.jsp");
+		}else {//si viene de registrar usuario
+			UsuarioController.creaUsuario(nombre, apellidos, mail, movil, nick, password);
+			int id_u= UsuarioController.traeIdUsu(nick, password);
 
-		response.sendRedirect("Home.jsp");
-
+			response.sendRedirect("Home.jsp?id_usu="+id_u);
+		}
 	}
-
 }

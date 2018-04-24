@@ -15,7 +15,7 @@ public class AnuncioController {
 	public static List<Anuncios> allAnuncios() {//trae todas las imagenes a Home.jsp
 
 		List<Anuncios> aList = new ArrayList<Anuncios>();
-		String sql = "SELECT id_muros,muros.id_usuario,usuario,muro FROM muros "
+		String sql = "SELECT id_muros,muros.id_usuario,usuario,muro,fecha_muro FROM muros "
 				+ "JOIN usuario ON muros.id_usuario=usuario.id_usuario";// falta añadir fecha y likes si se kiere
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
@@ -23,7 +23,7 @@ public class AnuncioController {
 
 			while (rs.next()) {
 				aList.add(new Anuncios(
-						rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4)));
+						rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5)));
 			}
 		} catch (Exception e) {
 			String s = e.getMessage();
@@ -43,7 +43,7 @@ public class AnuncioController {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				anun.add(new Anuncios(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7)));
+				anun.add(new Anuncios(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
 			}
 		} catch (Exception e) {
 			String s = e.getMessage();

@@ -4,25 +4,15 @@
 <body>
 <%@ include file="parts/barraMenu.jsp"%>
 	<div class="container" style="padding-top: 60px">
-
 <%
-	int id_u;
 	int id_img = (int) session.getAttribute("id_img");
-	if (session.getAttribute("id_usu") != null && (int) session.getAttribute("id_usu") != 0) {
-		id_u = (int) session.getAttribute("id_usu");
-	%><%@ include file="parts/sesion.jsp"%>
-<%
-	} else {
-		id_u = 0;
-		out.println("Bienvenido User: <a href='editar.jsp'> Falta LOG</a> con ID: " + id_u);
-	}
 	List<home> desc_ima = ImgController.getImage(id_img);
-	
-%><%@ include file="parts/barraMenu.jsp"%>
+%>
+<div class="row" align="center" style="display:grid">
 <%
 	for (home f : desc_ima) {
 %>
-<div class="elementoHome" style="position: relative; width:200px; height:150px">
+<div class="elementoHome " style="position: relative; width:200px; height:150px">
 	<img src="img/<%=f.getUrl()%>" width="200" height="150">
 	<%
 		if (id_u != 0) {
@@ -41,44 +31,45 @@
 	<%
 		}
 	%>
-	<br><label>Likes: <span class="numlikes"><%=ImgController.getLikes(id_img)%></span></label>
+	<br><h5 class="text-portfolio-img" style="font-style:italic" >Le ha gustado a <b><span class="numlikes"><%=ImgController.getLikes(id_img)%></span></b> personas</h5>
 </div>
-
 <br>
-<label>Autor:</label>
-<a href="perfil?id_autor=<%=f.getIdUsuario()%>&id_usu=<%=id_u%>"><%=f.getNomUsuario()%></a>
-<br>
-<label>Estilo:</label>
-<span><%=f.getEstilo()%></span>
-<br>
-<label>Fecha:</label>
-<span><%=f.getFecha()%></span>
-<br>
-<%
+<div class="panel-body panel-boxed pull-left" style="padding-left:20px; margin-bottom:20px;text-align:left;padding-left:200px">
+			
+			<h4 class="text-portfolio-img">Autor: <a href="perfil?id_autor=<%=f.getIdUsuario()%>&id_usu=<%=id_u%>" style="color:black;font-style:italic"><%=f.getNomUsuario()%></a></h4>
+			<h4 class="text-portfolio-img">Ubicación: <a href="#" style="color:black;font-style:italic">Barcelona</a></h4> 
+		<h4 class="text-portfolio-img">Estilo:<a href="search?Buscar=<%=f.getEstilo()%>" style="color:black;font-style:italic"><%=f.getEstilo()%></a></h4>
+		<h4 class="text-portfolio-img">Fecha:</h4><span style="color:black;font-style:italic"><%=f.getFecha()%></span><br>
+		<h4 class="text-portfolio-img">Descripción:</h4><span style="color:black;font-style:italic"><%=f.getDescripcion()%></span>
+		<%
 	if (id_u != 0) {
 %>
-<a href="pasaId?id_usu=<%=id_u%>&id_recep=<%=f.getIdUsuario()%>">Contactar</a>
 <br>
+	<a href="pasaId?id_usu=<%=id_u%>&id_recep=<%=f.getIdUsuario()%>">	
+	<img src="img//default/contactarboton.png" style="width:17S%" alt="place" class="img-responsive"> </a>
+	<br>
 <%
+		}
 	}
-%>
-<label>Descripción: </label><span> <%=f.getDescripcion()%> </span>
-<%
-	}
+	%>	
+	</div>
+</div><br>
+	<%
 	List<Comentario> listaComentarios = ComentarioController.getComentario(id_img);
 	for (Comentario c : listaComentarios) {
-%>
-<textarea class="form-control" style="resize: none;width:30%" placeholder="Deja un comentario" disabled><%=c.getComentario()%> </textarea>
-<br>
-<label>idImagen:</label>
-<span><%=c.getIdOrigen()%> </span>
-<br>
-<label> idComentario: </label>
-<span><%=c.getIdComentario()%> </span>
-<br>
-<label>Nombre del usuario:</label>
-<span><%=c.getUsuario()%> </span>
-<br>
+	%>
+		<br>
+		<textarea class="form-control" style="resize: none;width:30%;font-size:15px"  disabled><%=c.getComentario()%> </textarea>
+		<br>
+		<label>idImagen:</label>
+		<span><%=c.getIdOrigen()%> </span>
+		<br>
+		<label> idComentario: </label>
+		<span><%=c.getIdComentario()%> </span>
+		<br>
+		<label>Nombre del usuario:</label>
+		<span><%=c.getUsuario()%> </span>
+		<br>
 <%
 	}
 	if (id_u != 0) {
@@ -91,7 +82,7 @@
 		<input type="hidden" name="tipusComentari" value="coment_img"> 
 		<input type="hidden" name="id_img" value="<%=id_img%>"> 
 		<input type="hidden" name="id_usu" value="<%=id_u%>"> 
-		<textarea style="resize: none;width:377px;height:122px" name="comentario" placeholder="Deja un comentario" class="form-control"></textarea>
+		<textarea style="resize: none;width:377px;height:122px;font-size:12px" name="comentario" placeholder="Deja un comentario" class="form-control"></textarea>
 	</div>
 	<button type="submit" class="btn btn-primary">Comentar</button>
 </form>
@@ -105,7 +96,7 @@
 		<input type="hidden" name="tipusComentari" value="coment_muro"> 
 		<input type="hidden" name="id_img" value="<%=id_img%>"> 
 		<input type="hidden" name="id_usu" value="<%=id_u%>"> 
-		<textarea style="resize: none;width:377px;height:122px" name="comentario" placeholder="Deja un comentario" class="form-control"></textarea>
+		<textarea style="resize: none;width:377px;height:122px;font-size:12px" name="comentario" placeholder="Deja un comentario" class="form-control"></textarea>
 	</div>
 	<button type="submit" class="btn btn-primary" id="comentarMuro" >Comentar</button>
 </form>

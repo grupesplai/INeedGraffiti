@@ -7,25 +7,25 @@ public class Anuncios {
 	private int idUsuario;
 	private String nomUsuario;
 	private String descripcion;
-	private int fecha;
 	private String fechas;
 	private String comentario;
 	
-	public Anuncios(int id_img, int id_usu, String usuNom, String url, int fecha, String descripcion, String comentario ) {
+	public Anuncios(int id_img, int id_usu, String usuNom, String url, String fecha, String descripcion, String comentario ) {
 		this.idMuro = id_img;
 		this.idUsuario = id_usu;
 		this.nomUsuario = usuNom;
 		this.url = url;
-		this.fecha = fecha;
+		this.fechas = fecha;
 		this.descripcion = descripcion;
 		this.comentario = comentario;
 	}
 	
-	public Anuncios(int id_muro,int id_usu, String nomUsu, String url ) {
+	public Anuncios(int id_muro,int id_usu, String nomUsu, String url, String fechas) {
 		this.idMuro = id_muro;
 		this.idUsuario = id_usu;
 		this.nomUsuario = nomUsu;
 		this.url = url;
+		this.fechas = fechas;
 
 	}
 	
@@ -54,8 +54,8 @@ public class Anuncios {
 	public String getDescripcion() {
 		return descripcion;
 	}
-	public int getFecha() {
-		return fecha;
+	public String getFecha() {
+		return fechas;
 	}
 	public String getComentario() {
 		return comentario;

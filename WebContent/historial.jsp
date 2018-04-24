@@ -7,22 +7,9 @@
 <%@ include file="parts/barraMenu.jsp"%>
 	<div class="container" style="padding-top: 60px">
 <%
-	int id_u;
-	if (session.getAttribute("id_usu") != null && (int) session.getAttribute("id_usu") != 0) {
-		id_u = (int) session.getAttribute("id_usu");
-%><%@ include file="parts/sesion.jsp"%>
-<div>
-	<a href="login">LOG-OUT</a>
-</div>
-<%
-	} else {
-		id_u=0;
-		out.println("Bienvenido User: <a href='editar.jsp'> Falta LOG</a> con ID: " + id_u + "<br>");
-	}
-	
 	List<Chat> hist = ChatController.getHistorial(id_u);
 %>
-<%@ include file="parts/barraMenu.jsp"%>
+
 		<div class="row">
 		<ul>
 			<%

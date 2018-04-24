@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.PreparedStatement;
 
 import com.mysql.jdbc.Connection;
 
@@ -15,7 +16,7 @@ public class UsuarioController {
 
 	public static String traeNick(int id_usu) {//puede que no se llame (deberia llamarse desde "sesion.jsp")
 		String nick = "";
-		String sql = "SELECT usuario FROM usuario WHERE id_usuario=" + id_usu;
+		String sql = "SELECT usuario FROM usuario WHERE id_usuario='" + id_usu+"'";
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 			ResultSet rs = stmt.executeQuery(sql);
@@ -33,16 +34,38 @@ public class UsuarioController {
 	public static void creaUsuario(String nombre, String apellidos, String mail, String movil, String nick,
 			String password) {
 
-		String sql = String.format(
-				"INSERT INTO usuario (nombre, apelido, usuario, mail, movil, contraseña) VALUES (\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\")",
-				nombre, apellidos, nick, mail, movil, password);
+		String sql = "INSERT INTO usuario (nombre, apelido, usuario, mail, movil, contraseña) VALUES (?,?,?,?,?,?)";
 
-		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate(sql);
+		try (Connection conn = BDConn.getConn();PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			
+				pstmt.setString(1, nombre);
+				pstmt.setString(2, apellidos);
+				pstmt.setString(3, nick);
+				pstmt.setString(4, mail);
+				pstmt.setString(5, movil);
+				pstmt.setString(6, password);
+				pstmt.executeUpdate();
 		} catch (Exception e) {
 			String s = e.getMessage();
 			System.out.println(s);
 		}
+	}
+	
+	public static int traeIdUsu(String nick, String pass) {
+		int id_usu = 0;
+		String sql = "SELECT id_usuario FROM usuario WHERE usuario='" + nick+"' AND contraseña='"+pass+"'";
+
+		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
+			ResultSet rs = stmt.executeQuery(sql);
+
+			if (rs.next()) {
+				id_usu = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			String s = e.getMessage();
+			System.out.println(s);
+		}
+		return id_usu;
 	}
 
 	public static List<Usuario> getPerfil(int id_usu) {
@@ -51,7 +74,7 @@ public class UsuarioController {
 		String sql = "SELECT id_usuario,usuario,mail,movil,imagen_perfil FROM usuario WHERE id_usuario='"+id_usu+"'";
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-
+			sql= sql.replaceAll("''", "null");
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
@@ -66,58 +89,6 @@ public class UsuarioController {
 		return uList;
 	}
 
-	public static List<Usuario> getPerfil2(int id_au) {
-
-		List<Usuario> uList = new ArrayList<Usuario>();
-		String sql = "SELECT id_usuario,usuario,mail,movil,imagen_perfil FROM usuario WHERE id_usuario='" + id_au + "' ";
-		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-
-			ResultSet rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				uList.add(
-						new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
-			}
-		} catch (Exception e) {
-			String s = e.getMessage();
-			System.out.println(s);
-		}
-		return uList;
-	}
-
-	public static List<Usuario> getImagen(int id_usu) throws SQLException {
-
-		List<Usuario> listimagen = new ArrayList<Usuario>();
-
-		String sql = "SELECT id_imagenes,imagenes,description_imagen,estilo,fecha, SUM(bolean) AS sumlikes  FROM imagenes LEFT JOIN likesimg ON imagenes.id_imagenes=likesimg.id_img WHERE imagenes.id_usuario='" + id_usu + "' GROUP BY id_imagenes ORDER BY fecha_de_pubblication DESC ";
-		
-		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-
-			ResultSet rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				listimagen.add(new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt("sumlikes")));
-			}
-		}
-		return listimagen;
-	}
-
-	public static List<Usuario> getImagen2(int id_au) throws SQLException {
-
-		List<Usuario> listimagen = new ArrayList<Usuario>();
-		String sql = "SELECT id_imagenes,imagenes,description_imagen,estilo,fecha, SUM(bolean) AS sumlikes  FROM imagenes LEFT JOIN likesimg ON imagenes.id_imagenes=likesimg.id_img WHERE imagenes.id_usuario='" + id_au + "' GROUP BY id_imagenes ORDER BY fecha_de_pubblication DESC ";
-
-		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-
-			ResultSet rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				listimagen.add(new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getInt("sumlikes")));
-			}
-		}
-		return listimagen;
-	}
 
 	public static List<Anuncios> getAnuncio(int id_usu) throws SQLException {
 
@@ -187,23 +158,7 @@ public class UsuarioController {
 		}
 		return vdd;
 	}
-	public static int sumlike(int imglike) {
 
-		String sql = "select sum(bolean) FROM likesimg WHERE id_img='" + imglike+"'";
-		int resp=0;
-
-		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				resp = rs.getInt(1);
-			}
-		} catch (Exception e) {
-			String s = e.getMessage();
-			System.out.println(s);
-		}
-		return resp;
-	}
 	
 	public static void subirimg(int id_user, String fileName, String comentario, String estilo, String fecha) {
 
@@ -231,5 +186,27 @@ public class UsuarioController {
 			String s = e.getMessage();
 			System.out.println(s);
 		}
+	}
+	
+	public static void modificarUsuario(int id_u,String nombre, String apellido, String mail, String movil, String nick,
+					String password) {
+				
+				String sql = "UPDATE usuario SET nombre = ?, apelido =?,usuario=?, mail=?, " + 
+						"movil=?, contraseña=? WHERE id_usuario=?";
+			
+				try (Connection conn = BDConn.getConn();PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			
+					pstmt.setString(1, nombre);
+					pstmt.setString(2, apellido);
+					pstmt.setString(3, nick);
+					pstmt.setString(4, mail);
+					pstmt.setString(5, movil);
+					pstmt.setString(6, password);
+					pstmt.setInt(7, id_u);
+					pstmt.executeUpdate();
+				} catch (Exception e) {
+					String s = e.getMessage();
+				System.out.println(s);
+				}
 	}
 }

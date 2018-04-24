@@ -11,6 +11,14 @@ public class Usuario {
 	private String estilo;
 	private String fecha;
 	private int idimg;
+	private String contraseña;
+	public String getContraseña() {
+		return contraseña;
+	}
+	public String getApellido() {
+		return apellido;
+	}
+	private String apellido;
 
 	public Usuario(int id_usu, String usuario, String email, String movil, String url_perfil) {
 		this.idUsuario = id_usu;
@@ -26,6 +34,17 @@ public class Usuario {
 		this.likes = likes;
 		this.estilo = estilo;
 		this.fecha = fecha;
+	}
+	
+	public Usuario(int id_usu, String usuario, String email, String movil, String url_perfil,String contraseña,String apellido,String nombre) {
+		this.idUsuario = id_usu;
+		this.usuario = usuario;
+		this.email = email;
+		this.movil = movil;
+		this.url = url_perfil;
+		this.contraseña = contraseña;
+		this.apellido = apellido;
+		this.usuario = nombre;
 	}
 
 	public String getUrl() {

@@ -5,28 +5,15 @@
 <body>
 <%@ include file="parts/barraMenu.jsp"%>
 	<div class="container" style="padding-top: 60px">
-<%
-	int id_u;
-	if (session.getAttribute("id_usu") != null && (int) session.getAttribute("id_usu") != 0) {
-		id_u = (int) session.getAttribute("id_usu");
-%><%@ include file="parts/sesion.jsp"%>
-<div><a href="login">LOG-OUT</a>
-</div>
-<%
-	} else {
-		id_u = 0;
-		out.println("Bienvenido User: <a href='editar.jsp'> Falta LOG</a> con ID: " + id_u + "<br>");
-	}	%>
-
-<%@ include file="parts/barraMenu.jsp"%>
+	
 		<h1>Nuevo Usuario</h1>
 		<hr>
 		<form action="registro" method="post">
-		<div style="padding-left:150px">
+		<div class="place" style="padding-left:150px">
 			<div class="form-group">
 				<label for="nombreUsuario" >Nombre</label>
 				<input type="text" name="nombreUsuario" style="width:30%;height:34px"
-					 class="form-control" id="nombreUsuario" placeholder="Nombre">
+					 class="form-control" id="nombreUsuario" placeholder="Nombre" required>
 			</div>
 			
 			<div class="form-group">
@@ -35,35 +22,33 @@
 					class="form-control" id="apellidosUsuario" placeholder="Apellidos">
 			</div>
 			<div class="form-group">
-				<label for="mailUsuario" >Mail</label>
+				<label for="mailUsuario" >e-mail</label>
 				<input type="text" name="mailUsuario" style="width:30%;height:34px"
-					class="form-control" id="mailUsuario" placeholder="e-mail">
+					class="form-control" id="mailUsuario" placeholder="e-mail" required>
 			</div>
 			<div class="form-group">
-				<label for="movilUsuario" >movil</label>
+				<label for="movilUsuario" >Móvil</label>
 				<input type="text" name="movilUsuario" style="width:30%;height:34px"
-					class="form-control" id="movilUsuario" placeholder="Teléfono">
+					class="form-control" id="movilUsuario"  placeholder="Móvil" pattern="[0-9]{9}">
 			</div>
 			
 			<div class="form-group">
 				<label for="nickUsuario" >Nombre de usuario</label>
 				<input type="text" name="nickUsuario" style="width:30%;height:34px"
-					class="form-control" id="nickUsuario" placeholder="nombre de usuario">
+					class="form-control" id="nickUsuario" placeholder="Nombre de usuario" required>
 			</div>
 			
 			
 			<div class="form-group">
 				<label for="passwordUsuario" >Contraseña</label>
 				<input type="password" name="passwordUsuario" style="width:30%;height:34px"
-					class="form-control" id="passwordUsuario" placeholder="Contraseña">
+					class="form-control" id="passwordUsuario" placeholder="Contraseña" required>
 			</div>
 			<div class="form-group">
 				<label for="confirmPassword" >Repite la Contraseña</label>
 				<input type="password" name="confirmPassword" style="width:30%;height:34px"
-					class="form-control" id="confirmPassword" placeholder="Repite la Contraseña">
+					class="form-control" id="confirmPassword" placeholder="Repite la Contraseña" required>
 			</div>
-			
-			
 			<button type="submit" class="btn btn-primary" id="registrar">Enviar</button>
 		</div>
 		</form>

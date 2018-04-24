@@ -9,17 +9,7 @@
 	List<Anuncios> anun = AnuncioController.getAnuncio(id_anun);
 %>
 <%@ include file="parts/barraMenu.jsp"%>
-
-	<%
-		int id_u = 0;
-		if (session.getAttribute("id_usu") != null && (int) session.getAttribute("id_usu") != 0) {
-			id_u = (int) session.getAttribute("id_usu");
-	%><%@ include file="parts/sesion.jsp"%>
-	<%
-		} else {
-			out.println("Bienvenido User: <a href='editar.jsp'> Falta LOG</a> con ID: " + id_u + "<br>");
-		}
-		%>
+	<div class="container" style="padding-top: 60px">
 		<div class="row">
 			<%
 		for (Anuncios g : anun) {
