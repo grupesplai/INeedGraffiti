@@ -44,7 +44,7 @@ int id_autor = (int) session.getAttribute("id_aut");
 </div>
 </div>
 
-<h1 align="center">Portfolio</h1><a  class="btn btn-secondary btn-sm" href="subiranuncio.jsp" role="buttom">Publicar</a>
+<h1 align="center">Portfolio</h1><a class="btn btn-secondary btn-sm" href="publicar.jsp" role="buttom">Publicar</a>
 
 <div class="timeline row" style="position: relative; height: 1000px;">
                 <%
@@ -89,14 +89,15 @@ int id_autor = (int) session.getAttribute("id_aut");
 
 
 
-<div class="row">
+	<h1 align="center">Anuncios</h1><br>
+	<a type="button" class="btn btn-secondary btn-lg" href="publicar.jsp">Publicar</a><br>
+<div class="row"> 
 <%
-if(traer_anuncio.isEmpty() == false){
+//if(traer_anuncio.isEmpty() == false){
 	%>
 	
-	<h1 align="center">Anuncios</h1><a  class="btn btn-secondary btn-sm" href="subiranuncio.jsp" role="buttom">Publicar</a>
 	<%
-}
+//}
 		for (Anuncios a : traer_anuncio) {
 	%>
 	
