@@ -41,17 +41,24 @@ public class registro extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
 		String nombre = request.getParameter("nombreUsuario");
 		String apellidos = request.getParameter("apellidosUsuario");
 		String mail = request.getParameter("mailUsuario");
 		String movil = request.getParameter("movilUsuario");
 		String nick = request.getParameter("nickUsuario");
 		String password = request.getParameter("passwordUsuario");
-		UsuarioController.creaUsuario(nombre, apellidos, mail, movil, nick, password);
-
-		response.sendRedirect("Home.jsp");
+		
+		if(request.getParameter("modificar") != null ) {//si viene de modificar/editar
+			int id_u= Integer.parseInt(request.getParameter("modificar"));
+			UsuarioController.modificarUsuario(id_u,nombre, apellidos, mail, movil, nick, password);
+			session.setAttribute("id_usu", id_u);
+			response.sendRedirect("perfil.jsp");
+		}else {//si viene de registrar usuario
+			UsuarioController.creaUsuario(nombre, apellidos, mail, movil, nick, password);
+			response.sendRedirect("Home.jsp");
+		}
 
 	}
-
+	
 }

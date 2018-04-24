@@ -1,5 +1,6 @@
 package controladores;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,12 +34,20 @@ public class UsuarioController {
 	public static void creaUsuario(String nombre, String apellidos, String mail, String movil, String nick,
 			String password) {
 
-		String sql = String.format(
-				"INSERT INTO usuario (nombre, apelido, usuario, mail, movil, contraseña) VALUES (\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\")",
-				nombre, apellidos, nick, mail, movil, password);
+		String sql2 = 
+				"INSERT INTO usuario (nombre, apelido, usuario, mail, movil, contraseña) VALUES (?,?,?,?,?,?)";
+				
 
-		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate(sql);
+		try (Connection conn = BDConn.getConn();
+				PreparedStatement pstmt = conn.prepareStatement(sql2)) {
+
+			pstmt.setString(1, nombre);
+			pstmt.setString(2, apellidos);
+			pstmt.setString(3, nick);
+			pstmt.setString(4, mail);
+			pstmt.setString(5, movil);
+			pstmt.setString(6, password);
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			String s = e.getMessage();
 			System.out.println(s);
@@ -232,4 +241,30 @@ public class UsuarioController {
 			System.out.println(s);
 		}
 	}
+	
+public static void modificarUsuario(int id_u,String nombre, String apellido, String mail, String movil, String nick,
+		String password) {
+
+	/*String sql = "UPDATE usuario SET nombre = '"+nombre+"', apelido ='"+apellido+"',usuario='"+nick+"', mail='"+mail+"', " + 
+			"movil='"+movil+"', contraseña='"+password+"' WHERE id_usuario='"+id_u+"'";*/
+	
+	String sql = "UPDATE usuario SET nombre = ?, apelido =?,usuario=?, mail=?, " + 
+			"movil=?, contraseña=? WHERE id_usuario=?";
+
+	try (Connection conn = BDConn.getConn();
+			PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+		pstmt.setString(1, nombre);
+		pstmt.setString(2, apellido);
+		pstmt.setString(3, nick);
+		pstmt.setString(4, mail);
+		pstmt.setString(5, movil);
+		pstmt.setString(6, password);
+		pstmt.setInt(7, id_u);
+		pstmt.executeUpdate();
+	} catch (Exception e) {
+		String s = e.getMessage();
+		System.out.println(s);
+	}
+}
 }

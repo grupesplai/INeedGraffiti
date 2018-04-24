@@ -108,6 +108,7 @@ if(traer_anuncio.isEmpty() == false){
 	%>
 </div>
 </div>
+<a href="editarperfil?id_usuario=<%=id_u%>">Editar perfil</a><br>
 <%@ include file="parts/footerAjax.jsp"%>
 </body>
 </html>
