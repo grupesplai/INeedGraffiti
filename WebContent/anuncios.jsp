@@ -26,8 +26,9 @@
 		class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col-12 text-center foto_home">
 		<a href="pasaId?id_anun=<%=g.getIdImagen()%>&id_usu=<%=id_u%>">
 		<img src="img/<%=g.getUrl()%>" width="250" height="180"></a><br>
-			<label>Autor:</label><a href="perfil"><%=g.getNomUsuario()%><%=g.getIdImagen()%></a><br>
-			<label>Fecha:</label><span><%=g.getFecha()%> </span><br>
+			<label>Autor:</label><a href="perfil?id_autor=<%=g.getIdUsuario()%>&id_usu=<%=id_u%>"><%=g.getNomUsuario()%></a><br>
+			<label>Fecha:</label><span><%=g.getFechas()%> </span><br>
+		
 		<%if (id_u != 0) {%>
 		<a href="pasaId?id_usu=<%=id_u%>&id_recep=<%=g.getIdUsuario()%>">Contactar</a><br>
 		<%}

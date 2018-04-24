@@ -25,24 +25,26 @@ int id_autor = (int) session.getAttribute("id_aut");
 	List<home> traer_ima = ImgController.getImage(id_autor);
 	List<Anuncios> traer_anuncio = UsuarioController.getAnuncio(id_autor);
 %>
+<br>
 
-<div class="row">
+<div class="row" >
+<div align="center">
 	<%
 		for (Usuario user : profile) {
 	%><div style="display: inline-block;text-align:center;"
 		class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col-12 text-center foto_home">
 		<img class="img-fluid img-thumbnail" src="user/<%=user.getUrl()%>"
-			width="100" height="70"><br> <label><%=user.getUsuario()%>
-		</label><br> <label><%=user.getEmail()%></label><br> <label>
+			width="100" height="70"><br> <h3><label><%=user.getUsuario()%>
+		</label></h3><br> <label><%=user.getEmail()%></label><br> <label>
 			<%=user.getMovil()%></label><br> <label> <%=user.getLikes()%></label>
 	</div>
 	<%
 		}
 	%>
 </div>
+</div>
 
-
-
+<h1 align="center">Portfolio</h1><a  class="btn btn-secondary btn-sm" href="subiranuncio.jsp" role="buttom">Publicar</a>
 
 <div class="timeline row" style="position: relative; height: 1000px;">
                 <%
@@ -91,7 +93,8 @@ int id_autor = (int) session.getAttribute("id_aut");
 <%
 if(traer_anuncio.isEmpty() == false){
 	%>
-	<h1 align="center">Anuncios</h1>
+	
+	<h1 align="center">Anuncios</h1><a  class="btn btn-secondary btn-sm" href="subiranuncio.jsp" role="buttom">Publicar</a>
 	<%
 }
 		for (Anuncios a : traer_anuncio) {
@@ -101,7 +104,7 @@ if(traer_anuncio.isEmpty() == false){
 		class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col-12 text-center foto_home">
 		<img src="img/<%=a.getUrl()%>" width="200" height="150"><br>
 		<label>Descripcion:</label> <span><%=a.getDescripcion()%></span><br>
-		<label>Fecha:</label> <span><%=a.getFecha()%> </span><br>
+		<label>Fecha:</label> <span><%=a.getFechas()%> </span><br>
 	</div>
 	<%
 		}

@@ -21,14 +21,23 @@ public class Anuncios {
 		this.comentario = comentario;
 	}
 	
-	public Anuncios(int id_muro,int id_usu, String nomUsu, String url ) {
+	public Anuncios(int id_muro,int id_usu, String nomUsu, String url, String fechas) {
 		this.idMuro = id_muro;
 		this.idUsuario = id_usu;
 		this.nomUsuario = nomUsu;
 		this.url = url;
+		this.fechas = fechas;
 
 	}
 	
+	public String getFechas() {
+		return fechas;
+	}
+
+	public void setFechas(String fechas) {
+		this.fechas = fechas;
+	}
+
 	public Anuncios(String usuario, String muro, String descripcion, String fecha) {
 		this.nomUsuario= usuario;
 		this.url = muro;

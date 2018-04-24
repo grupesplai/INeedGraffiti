@@ -3,6 +3,7 @@ package controladores;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.mysql.jdbc.Connection;
@@ -15,15 +16,16 @@ public class AnuncioController {
 	public static List<Anuncios> allAnuncios() {//trae todas las imagenes a Home.jsp
 
 		List<Anuncios> aList = new ArrayList<Anuncios>();
-		String sql = "SELECT id_muros,muros.id_usuario,usuario,muro FROM muros "
+		String sql = "SELECT id_muros,muros.id_usuario,usuario,muro,fecha_muro FROM muros "
 				+ "JOIN usuario ON muros.id_usuario=usuario.id_usuario";// falta añadir fecha y likes si se kiere
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
+				Calendar cal;
 				aList.add(new Anuncios(
-						rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4)));
+						rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5)));
 			}
 		} catch (Exception e) {
 			String s = e.getMessage();
