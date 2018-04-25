@@ -8,6 +8,7 @@ public class Comentario {
 	private int idReceptor;
 	private String usuario;
 	private String Comentario;
+	private String fecha;
 	
 	public Comentario(int idOrigen,int idComentario, int idEmisor, int idReceptor, String usuario, String comentario) {
 		super();
@@ -27,9 +28,9 @@ public class Comentario {
 		this.Comentario = comentario;
 	}
 	
-	public Comentario(int idOrigen, int idComentario, String usuario, String comentario) {
+	public Comentario(int idOrigen, String fecha, String usuario, String comentario) {
 		this.idOrigen = idOrigen;
-		this.idComentario = idComentario;
+		this.fecha = fecha;
 		this.usuario = usuario;
 		this.Comentario = comentario;
 		
@@ -43,38 +44,24 @@ public class Comentario {
 	public int getIdOrigen() {
 		return idOrigen;
 	}
-	public void setIdOrigen(int idOrigen) {
-		this.idOrigen = idOrigen;
-	}
 	public int getIdComentario() {
 		return idComentario;
-	}
-	public void setIdComentario(int idComentario) {
-		this.idComentario = idComentario;
 	}
 	public int getIdEmisor() {
 		return idEmisor;
 	}
-	public void setIdEmisor(int idEmisor) {
-		this.idEmisor = idEmisor;
-	}
+
 	public int getIdReceptor() {
 		return idReceptor;
-	}
-	public void setIdReceptor(int idReceptor) {
-		this.idReceptor = idReceptor;
 	}
 	public String getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
 	public String getComentario() {
 		return Comentario;
 	}
-	public void setComentario(String comentario) {
-		Comentario = comentario;
+	public String getFecha() {
+		return fecha;
 	}
 	
 	

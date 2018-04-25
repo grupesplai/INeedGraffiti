@@ -68,6 +68,23 @@ public class UsuarioController {
 		return id_usu;
 	}
 
+	public static String buscaAutor(int id_autor) {
+		String resp = "";
+		String sql = "SELECT usuario FROM usuario WHERE id_usuario='" + id_autor+"'";
+
+		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
+			ResultSet rs = stmt.executeQuery(sql);
+
+			if (rs.next()) {
+				resp = rs.getString(1);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return resp;
+	}
+
+	
 	public static List<Usuario> getPerfil(int id_usu) {
 
 		List<Usuario> uList = new ArrayList<Usuario>();

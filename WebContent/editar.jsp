@@ -9,22 +9,18 @@
 <% 
 		List<Usuario> profile = UsuarioController.getPerfil(id_u);
 %>
-<div>
-	<a href="login">LOG-OUT</a>
-</div>	
+<img class="img-fluid img-thumbnail" src="user/<%=ImgController.unaImagenP(id_u)%>"
+					width="200" height="200">
+					<br><br>
+
 		<h1>Editar Usuario</h1>
 		<hr>
+		
 			<%
 				for (Usuario user : profile) {
 			
 			%>
 			<div class="place" style="padding-left:150px">
-			
-				<img class="img-fluid img-thumbnail" src="user/<%=user.getUrl()%>"
-					width="200" height="200">
-					<br><br>
-
-
 				<form action="registro" method="post">
 					<div class="form-group">
 						<label for="nombreUsuario">Nombre</label> 

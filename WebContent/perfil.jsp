@@ -20,19 +20,21 @@
 	%><div class="col-xs-12 col-md-6 col-lg-4 item">
 		<div class="timeline-block" width=100%>
 			<img class="img-fluid img-thumbnail" src="user/<%=user.getUrl()%>"
-			style="width:100px; height:100px"><br> 
+			style="width:130px; height:130px"><br> 
 			<h3><label><%=user.getUsuario()%></label></h3><br>
-			<label><%=user.getEmail()%></label><br>
-			<label><%=user.getMovil()%></label><br> 
-			<label> <%=user.getLikes()%></label>
+			<label style="width:50px">e-mail</label><span style="color:black"><%=user.getEmail()%></span><br>
+			<label>Teléfono de contacto:</label><span style="color:black"><%=user.getMovil()%></span><br> 
+			<label> falta traer dato</label><span style="color:black"> <%=user.getLikes()%></span><br><br>
 		</div>
 	</div>
 	<%
 		}%>
 	
 </div>
-<hr/>
-	<h1 align="center">Portfolio</h1><a class="btn btn-secondary btn-sm" href="subiranuncio.jsp" role="buttom">Publicar</a>
+
+	<h1 style="padding-left:200px">Muro del autor</h1>
+		<hr/>
+
 <div class="timeline row" style="position: relative; height:auto;">
                 <%
 		for (home g : traer_ima) {
@@ -93,7 +95,6 @@ if(traer_anuncio.isEmpty() == false){
 	%>
 </div>
 </div>
-<a href="registro?id_usu=<%=id_u%>">Editar perfil</a><br>
 <%@ include file="parts/footerAjax.jsp"%>
 </body>
 </html>

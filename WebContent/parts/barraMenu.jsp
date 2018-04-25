@@ -17,48 +17,38 @@
 <nav class="navbar navbar-inverse navbar-expand-lg navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header" style="padding-top: 10px; font-size: 22px">
-			<a class="logo" href="Home.jsp">INeedGraffiti</a>
+			<a class="logo" href="Home.jsp" style="font-family:'Pacifico',cursive;font-size:30px">INeedGraffiti</a>
  		</div>
-
 		<ul class="nav navbar-nav navbar-right">
-			<li><form class="navbar-form navbar-left text-center"
-					action="search" method="post">
-					<div class="form-group">
-						<input type="text" class="form-control" name="Buscar"
-							placeholder="BuscarGraffiti">
-					</div>
-					<button type="submit" class="btn btn-default">Buscar</button>
-				</form><%
+			<%
 				if(id_u != 0){
-					%><li style="color:white;padding-top:15px;padding-bottom:15px"><span class="glyphicon glyphicon-user"></span> Bienvenido: <b><%=UsuarioController.traeNick(id_u) %></b> 
+					%><li style="color:white;padding-top:15px;padding-bottom:15px;display:inline-block"><span class="glyphicon glyphicon-user"></span> Bienvenido: <b><%=UsuarioController.traeNick(id_u) %> </b> 
+							</li>
+					<li style="color:white;display:inline-block"> &nbsp;&nbsp; <span class="glyphicon glyphicon-user"></span><a href="registro?id_usu=<%=id_u%>" style="display:inline-block"> Editar perfil</a>
 							</li>
 							<%
+							if(id_u != 0){
+								%>
+								<li style="color:white;display:inline-block"> <span class="glyphicon glyphicon-user"></span><a href="login" style="display:inline-block">Salir</a></li>
+							<%
+							}
+							
 				}else{
-					%><li><a href="registro.jsp"><span class="glyphicon glyphicon-user"></span> Registrar
+					%>
+					<li>
+			<form class="navbar-form navbar-left text-center" action="login" method="post" style="color:black">
+			<div class="form-group" style="display:inline-block;padding-top:5px">
+				<input name="usuario" placeholder="Nombre de usuario" class="form-control" style="width:200px;height:26px;display:inline-block;font-size:12px;font-style:italic"> 
+				<input name="password" placeholder="Contraseña" class="form-control" style="width:200px;height:26px;display:inline-block;font-size:12px;font-style:italic"> 
+			<input
+				type="submit" value="Entrar" class="btn btn-default" style="display:inline-block;font-size:12px"></div>
+			</form><li><a href="registro.jsp"><span class="glyphicon glyphicon-user"></span> Registrar
 							</a></li>
 							<%
 				}
 				%>
-			<li><a href="#"> <span class="glyphicon glyphicon-log-in"></span>Iniciar
-					Sessión
-			</a></li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#"
-				id="navbarDropdownMenuLink" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false"> Dropdown link </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="#">Action</a> <a
-						class="dropdown-item" href="#">Another action</a> <a
-						class="dropdown-item" href="#">Something else here</a>
-				</div></li>
+			
 		</ul>
 	</div>
 </nav>
-			<%
-			if(id_u != 0){
-				%>
-			<div>
-				<a href="login">LOG-OUT</a>
-			</div>
-			<%
-			} %>
+			

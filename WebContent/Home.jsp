@@ -5,11 +5,31 @@
 		<%List<home> tops = ImgController.imgTop();%>
 <body>
 <%@ include file="parts/barraMenu.jsp"%>
-	<div class="container" style="padding-top: 60px">
-			<form action="login" method="post">
-			<input name="usuario"> <input name="password"> <input
-				type="submit" value="Entrar">
-			</form>
+	<div class="container">
+	
+	<% 
+	if(id_u != 0){
+	%>
+			<div>
+				<a class="btn btn-secondary btn-sm" href="subirimg.jsp" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Subir Graffiti</a>
+				<a class="btn btn-secondary btn-sm" href="subiranuncio.jsp" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Subir Anuncio</a>
+				<a class="btn btn-secondary btn-sm" href="pasaId?id_usu=<%=id_u%>&id_usua=<%=id_u%>" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Historial de mensajes</a>
+				<a class="btn btn-secondary btn-sm" href="anuncios.jsp" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Anuncios</a>
+				<br>
+			</div>
+			<%}%>
+			<br>
+			<div style="display:flex;padding-left:200px">
+			<form class="navbar-form navbar-left text-center"
+					action="search" method="post">
+					<div class="form-group">
+						<input type="text" class="form-control" name="Buscar" style="width:300px;font-size:12px;font-style:italic"
+							placeholder="BuscarGraffiti">
+					</div>
+					<button type="submit" class="btn btn-default" style="font-size:12px;color:white;background:#212529">Buscar</button>
+				</form></div>
+
+				<br><br>
 	<div class="timeline row" style="position: relative; height:auto;">
     <%
 			for (home g : tops) {
@@ -44,10 +64,6 @@
 	}
 	%></div>
 	</div>
-		<br> <a href="anuncios.jsp">anuncios</a><br> 
-		<a href="pasaId?id_usu=<%=id_u%>&id_usua=<%=id_u%>">historial de mensajes</a><br> 
-		<a href="addImage?id_usu=<%= id_u%>">Añadir imagenes</a><br> 
-		<a href="registro.jsp">Registrarse</a>
 <%@ include file="parts/footerAjax.jsp"%>
 </body>
 </html>

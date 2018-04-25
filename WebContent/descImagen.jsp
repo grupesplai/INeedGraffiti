@@ -12,8 +12,8 @@
 <%
 	for (home f : desc_ima) {
 %>
-<div class="elementoHome " style="position: relative; width:200px; height:150px">
-	<img src="img/<%=f.getUrl()%>" width="200" height="150">
+<div class="elementoHome " style="position: relative; width:600px; height:450px">
+	<img src="img/<%=f.getUrl()%>" width="600" height="450">
 	<%
 		if (id_u != 0) {
 				String clase = "";
@@ -34,76 +34,58 @@
 	<br><h5 class="text-portfolio-img" style="font-style:italic" >Le ha gustado a <b><span class="numlikes"><%=ImgController.getLikes(id_img)%></span></b> personas</h5>
 </div>
 <br>
-<div class="panel-body panel-boxed pull-left" style="padding-left:20px; margin-bottom:20px;text-align:left;padding-left:200px">
+<div class="panel-body panel-boxed pull-left" style="margin-bottom:20px;text-align:left;padding-left:311px">
 			
-			<h4 class="text-portfolio-img">Autor: <a href="perfil?id_autor=<%=f.getIdUsuario()%>&id_usu=<%=id_u%>" style="color:black;font-style:italic"><%=f.getNomUsuario()%></a></h4>
-			<h4 class="text-portfolio-img">Ubicación: <a href="#" style="color:black;font-style:italic">Barcelona</a></h4> 
-		<h4 class="text-portfolio-img">Estilo:<a href="search?Buscar=<%=f.getEstilo()%>" style="color:black;font-style:italic"><%=f.getEstilo()%></a></h4>
-		<h4 class="text-portfolio-img">Fecha:</h4><span style="color:black;font-style:italic"><%=f.getFecha()%></span><br>
-		<h4 class="text-portfolio-img">Descripción:</h4><span style="color:black;font-style:italic"><%=f.getDescripcion()%></span>
+			<h4 class="text-portfolio-img">Autor: <a href="perfil?id_autor=<%=f.getIdUsuario()%>&id_usu=<%=id_u%>" style="color:black;font-style:italic"> <%=f.getNomUsuario()%></a></h4>
+			<h4 class="text-portfolio-img">Ubicación: <a href="#" style="color:black;font-style:italic"> Barcelona</a></h4> 
+		<h4 class="text-portfolio-img">Estilo: <a href="search?Buscar=<%=f.getEstilo()%>" style="color:black;font-style:italic"> <%=f.getEstilo()%></a></h4>
+		<h4 class="text-portfolio-img">Fecha: <span style="color:black;font-style:italic"> <%=f.getFecha()%></span></h4>
+		<h4 class="text-portfolio-img" style="width:300px">Descripción: <span style="color:black;font-style:italic;font-weight:normal"> <%=f.getDescripcion()%></span></h4>
 		<%
 	if (id_u != 0) {
 %>
 <br>
 	<a href="pasaId?id_usu=<%=id_u%>&id_recep=<%=f.getIdUsuario()%>">	
-	<img src="img//default/contactarboton.png" style="width:17S%" alt="place" class="img-responsive"> </a>
+	<img src="img//default/contactarboton.png" style="width:36%;padding-left:148px" alt="place" class="img-responsive"> </a>
 	<br>
 <%
 		}
 	}
 	%>	
 	</div>
-</div><br>
+</div>
+<h1>Comentarios</h1>
+<hr>
 	<%
 	List<Comentario> listaComentarios = ComentarioController.getComentario(id_img);
+	if(listaComentarios.isEmpty()){
+		%><span style="padding-left:100px">No existen comentarios para esta imagen.</span><%
+	}
 	for (Comentario c : listaComentarios) {
 	%>
-		<br>
-		<textarea class="form-control" style="resize: none;width:30%;font-size:15px"  disabled><%=c.getComentario()%> </textarea>
-		<br>
-		<label>idImagen:</label>
-		<span><%=c.getIdOrigen()%> </span>
-		<br>
-		<label> idComentario: </label>
-		<span><%=c.getIdComentario()%> </span>
-		<br>
-		<label>Nombre del usuario:</label>
-		<span><%=c.getUsuario()%> </span>
+		<label>Usuario: </label><span> <%=c.getUsuario()%> </span>
+		<textarea class="form-control" style="resize: none;width:30%;font-size:15px;height:auto"  disabled><%=c.getComentario()%> </textarea>
+		<label style="padding-left:155px;font-style:italic">fecha: </label><span> <%=c.getFecha()%> </span>
 		<br>
 <%
 	}
 	if (id_u != 0) {
 %>
-<h1>Nuevo Comentario</h1>
-<hr>
+
+<div style="padding-left:379px">
+<br>
+<h4>Nuevo Comentario</h4>
 <form action="/iGrafitti/creaComentario" method="post">
 	<div class="form-group">
-		<label for="comentario">Comenta:</label> 
 		<input type="hidden" name="tipusComentari" value="coment_img"> 
 		<input type="hidden" name="id_img" value="<%=id_img%>"> 
-		<input type="hidden" name="id_usu" value="<%=id_u%>"> 
-		<textarea style="resize: none;width:377px;height:122px;font-size:12px" name="comentario" placeholder="Deja un comentario" class="form-control"></textarea>
+		<input type="hidden" name="id_usu" value="<%= id_u%>"> 
+		<textarea style="resize: none;width:377px;height:122px;font-size:12px" name="comentario" placeholder="Deja tu comentario. (Max.250 caracteres)" class="form-control"></textarea>
 	</div>
-	<button type="submit" class="btn btn-primary">Comentar</button>
+	<button type="submit" class="btn btn-primary" style="width:16%;font-size:12px">Comentar</button>
 </form>
-
-<h1>Nuevo Comentario Muro</h1>
-<hr>
-
-<form action="/iGrafitti/creaComentario" method="post">
-	<div class="form-group">
-		<label for="comentario">Comenta el muro:</label> 
-		<input type="hidden" name="tipusComentari" value="coment_muro"> 
-		<input type="hidden" name="id_img" value="<%=id_img%>"> 
-		<input type="hidden" name="id_usu" value="<%=id_u%>"> 
-		<textarea style="resize: none;width:377px;height:122px;font-size:12px" name="comentario" placeholder="Deja un comentario" class="form-control"></textarea>
-	</div>
-	<button type="submit" class="btn btn-primary" id="comentarMuro" >Comentar</button>
-</form>
-<hr>
-<%
-	}
-%>
+</div>
+<%} %>
 </div>
 <%@ include file="parts/footerAjax.jsp"%>
 </body>

@@ -12,9 +12,10 @@
 
 		<div class="row">
 		<ul>
+		<h3><span>Listado de conversaciones guardadas:</span></h3>
 			<%
 				for (Chat h: hist) {
-			%><li><a href="pasaId?id_usu=<%=id_u%>&id_recep=<%=h.getId_recept()%>"><%=h.getId_recept()%> - <%=ChatController.getNomUsu(h.getId_recept())%></a></li>
+			%><li style="padding-left:100px"><a href="pasaId?id_usu=<%=id_u%>&id_recep=<%=h.getId_recept()%>"><h2 style="font-family:'Pacifico',cursive"><%=ChatController.getNomUsu(h.getId_recept())%></h2></a></li>
 			<% } %>
 		</ul>
 		</div>
