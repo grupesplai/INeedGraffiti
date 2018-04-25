@@ -45,7 +45,7 @@ public class subirimg extends HttpServlet {
 		
 		// gets absolute path of the web application
 		//String appPath = request.getServletContext().getRealPath("");
-		String appPath = "C:\\Users\\Vic\\eclipse-workspace\\iGrafitti\\WebContent\\img";
+		String appPath = "C:\\Users\\Vic\\eclipse-workspace\\iGrafitti\\WebContent\\";
 		// constructs path of the directory to save uploaded file
 		String savePath = appPath + File.separator + SAVE_DIR;
 		System.out.println(savePath);

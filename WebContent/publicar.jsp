@@ -2,9 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@ include file="parts/head.jsp"%>
-<%
-	List<home> tops = ImgController.imgTop();
-%>
+
 <%@ include file="parts/barraMenu.jsp"%>
 <div class="container" style="padding-top: 60px">
 	<%
@@ -41,12 +39,12 @@
 			<form enctype="multipart/form-data" action="subiranuncio"
 				method="post">
 				<div class="form-group">
-					<label for="exampleFormControlFile1">Inserte imagen:</label> <input
+					<label for="file">Inserte imagen:</label> <input
 						type="file" class="form-control-file" id="file" name="file">
 				</div>
 				<div class="form-group">
 					<label for="descripcion">Descripción:</label>
-					<textarea type="text" name="descripcion" class="form-control"
+					<textarea name="descripcion" class="form-control"
 						id="descripcion" rows="3" style="font-size: 15px"></textarea>
 				</div>
 				<div class="form-group">
@@ -69,10 +67,10 @@
 
 		<div class="w-50 p-3" style="background-color: #eee; font-size: 20px">
 		<h1>Publicar imagen</h1>
-			<form enctype="multipart/form-data" action="subiranuncio"
+			<form enctype="multipart/form-data" action="subirimg"
 				method="post">
 				<div class="form-group">
-					<label for="exampleFormControlFile1">Inserte imagen:</label> <input
+					<label for="file">Inserte imagen:</label> <input
 						type="file" class="form-control-file" id="file" name="file">
 				</div>
 				<div class="form-group">

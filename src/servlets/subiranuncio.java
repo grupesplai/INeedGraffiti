@@ -41,11 +41,11 @@ public class subiranuncio extends HttpServlet {
 		HttpSession session = request.getSession();
     	int id_user = Integer.parseInt(request.getParameter("ussuario"));
     	String descripcion = request.getParameter("descripcion");
-		String fecha = request.getParameter("fecha");
+		
 		
 		// gets absolute path of the web application
 		//String appPath = request.getServletContext().getRealPath("");
-		String appPath = "C:\\Users\\Vic\\eclipse-workspace\\iGrafitti\\WebContent\\anuncios";
+		String appPath = "C:\\Users\\Vic\\eclipse-workspace\\iGrafitti\\WebContent\\";
 		// constructs path of the directory to save uploaded file
 		String savePath = appPath + File.separator + SAVE_DIR;
 		System.out.println(savePath);
@@ -66,11 +66,11 @@ public class subiranuncio extends HttpServlet {
 			
 			session.setAttribute("ussuario", id_user);
 	        session.setAttribute("descripcion", descripcion);
-	        session.setAttribute("fecha", fecha);
+	        
 	      
 	        
 	        
-	        UsuarioController.subiranuncio(id_user, fileName, descripcion, fecha);
+	        UsuarioController.subiranuncio(id_user, fileName, descripcion);
 			
 			
 		request.setAttribute("message", "Anuncio publicado correctamente!");
