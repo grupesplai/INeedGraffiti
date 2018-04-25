@@ -33,6 +33,32 @@
 </head>
 <body>
 	
+	-------------
+	<form enctype="multipart/form-data" action="subiranuncio" method="post" >
+Imagen anuncio:<input type="file" name="file">
+<br>
+<div class="form-group">
+		<label for="comentario" >Descripción:</label> <input type="text"
+			name="descripcion">
+	</div>
+	<div class="form-group">
+		<label for="fecha">Fecha:</label> 
+		<script type="text/javascript">
+		var dt = new Date();
+
+		// Display the month, day, and year. getMonth() returns a 0-based number.
+		var month = dt.getMonth()+1;
+		var day = dt.getDate();
+		var year = dt.getFullYear();
+        
+		document.write(day + '-' + month + '-' + year);
+		</script>
+	</div>
+	<input type="hidden" name="ussuario" value=<%=id_u %>>
+	
+<input type="submit" value="Publicar">
+	----------
+	
 	<div class="row">
 		<div class="w-50 p-3" style="background-color: #eee; font-size: 20px">
 		<h1>Publicar anuncio</h1>
@@ -40,7 +66,7 @@
 				method="post">
 				<div class="form-group">
 					<label for="file">Inserte imagen:</label> <input
-						type="file" class="form-control-file" id="file" name="file">
+						type="file" name="file" class="form-control-file" id="file">
 				</div>
 				<div class="form-group">
 					<label for="descripcion">Descripción:</label>
@@ -71,7 +97,7 @@
 				method="post">
 				<div class="form-group">
 					<label for="file">Inserte imagen:</label> <input
-						type="file" class="form-control-file" id="file" name="file">
+						type="file" name="file" class="form-control-file" id="file">
 				</div>
 				<div class="form-group">
 					<label for="comentario">Descripción:</label> <input type="text"

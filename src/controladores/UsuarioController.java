@@ -205,10 +205,10 @@ public class UsuarioController {
 		return resp;
 	}
 	
-	public static void subirimg(int id_user, String fileName, String comentario, String estilo, String fecha) {
+	public static void subirimg(int id_user, String fileName, String comentario, int estilo, String fecha) {
 
 		String sql = String.format(
-				"INSERT INTO imagenes (id_usuario, imagenes, description_imagen, estilo, fecha) VALUES (\"%s\",\"%s\", \"%s\", \"%s\", \"%s\")",
+				"INSERT INTO imagenes (id_usuario, imagenes, description_imagen, id_estilo, fecha) VALUES (\"%s\",\"%s\", \"%s\", \"%s\", \"%s\")",
 				id_user, fileName, comentario, estilo, fecha);
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {

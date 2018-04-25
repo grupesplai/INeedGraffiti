@@ -40,12 +40,12 @@ public class subirimg extends HttpServlet {
 		HttpSession session = request.getSession();
     	int id_user = Integer.parseInt(request.getParameter("ussuario"));
     	String comentario = request.getParameter("comentario");
-		String estilo = request.getParameter("estilo");
+		int estilo = Integer.parseInt(request.getParameter("estilo"));
 		String fecha = request.getParameter("fecha");
 		
 		// gets absolute path of the web application
 		//String appPath = request.getServletContext().getRealPath("");
-		String appPath = "C:\\Users\\Vic\\eclipse-workspace\\iGrafitti\\WebContent\\";
+		String appPath = "C:\\Users\\Vic\\eclipse-workspace\\iGrafitti\\WebContent";
 		// constructs path of the directory to save uploaded file
 		String savePath = appPath + File.separator + SAVE_DIR;
 		System.out.println(savePath);
@@ -71,7 +71,7 @@ public class subirimg extends HttpServlet {
 	      
 	        
 	        
-	        UsuarioController.subirimg(id_user, fileName,comentario, estilo, fecha);
+	        UsuarioController.subirimg(id_user, fileName, comentario, estilo, fecha);
 			
 			
 		request.setAttribute("message", "Imagen subida correctamente!");
