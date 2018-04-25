@@ -32,8 +32,13 @@
 	
 </div>
 
+<%
+if(traer_ima.isEmpty()==false){
+	%>
 	<h1 style="padding-left:200px">Muro del autor</h1>
 		<hr/>
+	<%
+}%>
 
 <div class="timeline row" style="position: relative; height:auto;">
                 <%
@@ -63,9 +68,9 @@
 			<h5 class="text-portfolio-img" style="font-style:italic" >Le ha gustado a <b><span class="numlikes"><%=ImgController.getLikes(g.getIdImagen())%></span></b> personas</h5>
 			<h4 class="text-portfolio-img">Autor: <a href="perfil?id_autor=<%=g.getIdUsuario()%>&id_usu=<%=id_u%>" style="color:black;font-style:italic"><%=g.getNomUsuario()%></a></h4>
 			<h4 class="text-portfolio-img">Ubicación: <a href="#" style="color:black;font-style:italic"> Barcelona</a></h4> 
-		<h4 class="text-portfolio-img">Estilo: </h4><span> <%=g.getEstilo()%></span><br> 
-		<h4 class="text-portfolio-img">Fecha: </h4><span> <%=g.getFecha()%></span><br>
-		<h4 class="text-portfolio-img">Descripción: </h4><span> <%=g.getDescripcion()%></span>
+			<h4 class="text-portfolio-img">Estilo: <a href="search?Buscar=<%=g.getEstilo()%>" style="color:black;font-style:italic"> <%=g.getEstilo()%></a></h4>
+			<h4 class="text-portfolio-img">Fecha: <span style="color:black"> <%=g.getFecha()%></span></h4>
+			<h4 class="text-portfolio-img">Descripción: <span style="color:black;font-weight:normal"> <%=g.getDescripcion()%></span></h4>
 		</div></div>
 	</div>
 	<%
@@ -86,9 +91,11 @@ if(traer_anuncio.isEmpty()==false){
 	
 	<div style="display: inline-block;"
 		class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col-12 text-center foto_home">
-		<img src="img/<%=a.getUrl()%>" width="200" height="150"><br>
-		<label>Descripcion:</label> <span><%=a.getDescripcion()%></span><br>
-		<label>Fecha:</label> <span><%=a.getFecha()%> </span><br>
+		
+		<a href="pasaId?id_anun=<%=a.getIdImagen()%>&id_usu=<%=id_u%>"><img src="img/<%=a.getUrl()%>" width="200" height="150"></a>
+		<br>
+		<label>Fecha:</label> <span style="color:black;font-style:italic"><%=a.getFecha()%> </span><br>
+		<label>Descripcion:</label> <span style="color:black"><%=a.getDescripcion()%></span><br>
 	</div>
 	<%
 		}

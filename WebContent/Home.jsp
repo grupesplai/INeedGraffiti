@@ -7,26 +7,6 @@
 <%@ include file="parts/barraMenu.jsp"%>
 	<div class="container">
 	
-	<% 
-	if(id_u != 0){
-	%>
-			<div>
-				<a class="btn btn-secondary btn-sm" href="anuncios.jsp" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Anuncios</a>
-				<a class="btn btn-secondary btn-sm" href="pasaId?id_usu=<%=id_u%>&id_usua=<%=id_u%>" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Historial de mensajes</a>
-				<a class="btn btn-secondary btn-sm" href="subirimg.jsp" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Mi Muro</a>
-				<a class="btn btn-secondary btn-sm" href="subiranuncio.jsp" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Mis Anuncios</a>
-
-				<br>
-			</div>
-	<%}else{
-		%>
-		<div>
-			<a class="btn btn-secondary btn-sm" href="anuncios.jsp" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Anuncios</a>
-			<br>
-		</div>
-<%
-	}
-		%>
 			<br>
 			<div style="display:flex;padding-left:200px">
 			<form class="navbar-form navbar-left text-center"

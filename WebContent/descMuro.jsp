@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="modelos.*"%>
-<%@ page import="controladores.*"%>
-<%@ page import="servlets.*"%>
-<%@ page import="java.util.List"%>
-<%
-	int id_anun = (int) session.getAttribute("id_anun");
-	List<Anuncios> anun = AnuncioController.getAnuncio(id_anun);
-%>
+<%@ include file="parts/head.jsp"%>	
+<body>
 <%@ include file="parts/barraMenu.jsp"%>
 	<div class="container" style="padding-top: 60px">
-		<div class="row">
+	<%
+	int id_anun = (int) session.getAttribute("id_anun");
+	List<Anuncios> anun = AnuncioController.getAnuncio(id_anun);
+
+		%><div class="row">
 			<%
 		for (Anuncios g : anun) {
 	%><div style="display: inline-block;"
@@ -34,5 +32,6 @@
 	</div>
 </div>
 </div>
+<%@ include file="parts/footerAjax.jsp"%>
 </body>
 </html>
