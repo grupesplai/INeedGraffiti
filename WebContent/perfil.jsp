@@ -73,14 +73,14 @@
 	%>
 
 </div>
-<hr/>
+
 <%
-if(traer_anuncio.isEmpty() == false){
+if(traer_anuncio.isEmpty()==false){
 	%>
-	<h1 align="center">Anuncios</h1><a  class="btn btn-secondary btn-sm" href="subiranuncio.jsp" role="buttom">Publicar</a>
-	<div class="timeline row" style="position: relative; height:auto;">
+	<h1 style="padding-left:200px">Anuncios</h1>
+		<hr/>
 	<%
-}
+}%><div class="timeline row" style="position: relative; height:auto;"><%
 		for (Anuncios a : traer_anuncio) {
 	%>
 	
