@@ -5,12 +5,15 @@
 <%@ include file="parts/barraMenu.jsp"%>
 	<div class="container" style="padding-top: 60px">
 		<h1>Publicar anuncio</h1>
-		<form enctype="multipart/form-data" action="subiranuncio" method="post" >
-		Imagen anuncio:<input type="file" name="file">
 		<br>
+		<div>
+		<form enctype="multipart/form-data" action="subiranuncio" method="post" >
 		<div class="form-group">
-				<label for="comentario" >Descripción:</label> <input type="text"
-					name="descripcion">
+		<label for="imagen" >Imagen anuncio:</label><input type="file" class="form-control-file" name="file">
+		</div>
+		<div class="form-group">
+				<label for="comentario" >Descripción:</label> <textarea type="text" class="form-control"
+					name="descripcion" ></textarea>
 			</div>
 			<div class="form-group">
 				<label for="fecha">Fecha:</label> 
@@ -29,6 +32,7 @@
 			
 		<input type="submit" value="Publicar">
 		</form>
+		</div>
 	</div>
 <%@ include file="parts/footerAjax.jsp"%>
 </body>

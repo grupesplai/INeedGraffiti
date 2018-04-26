@@ -29,7 +29,7 @@ public class subirimg extends HttpServlet {
 	 * Name of the directory where uploaded files will be saved, relative to
 	 * the web application directory.
 	 */
-	private static final String SAVE_DIR = "img";
+	private static final String SAVE_DIR = "upload";
 
 	/**
 	 * handles file upload
@@ -40,12 +40,12 @@ public class subirimg extends HttpServlet {
 		HttpSession session = request.getSession();
     	int id_user = Integer.parseInt(request.getParameter("ussuario"));
     	String comentario = request.getParameter("comentario");
-		String estilo = request.getParameter("estilo");
+		int estilo = Integer.parseInt(request.getParameter("estilo"));
 		String fecha = request.getParameter("fecha");
 		
 		// gets absolute path of the web application
 		//String appPath = request.getServletContext().getRealPath("");
-		String appPath = "C:\\Users\\Vic\\eclipse-workspace\\iGrafitti\\WebContent\\img";
+		String appPath = "C:\\Users\\Vic\\git\\INeedGraffiti\\WebContent\\";
 		// constructs path of the directory to save uploaded file
 		String savePath = appPath + File.separator + SAVE_DIR;
 		System.out.println(savePath);

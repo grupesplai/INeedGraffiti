@@ -15,7 +15,7 @@
 		<%
 			for (Search s: profile) {
 		%><div class="col-xs-12 col-md-6 col-lg-4 item">
-			<a href="buscaImagen?id_img=<%=s.getImagenes()%>"><img
+			<a href="buscaImagen?id_img=<%=s.getIdimagen()%>"><img
 				src="img/<%=s.getImagenes()%>" width="200" height="150"> </a><br>
 			<br> <label><%=s.getUsuario()%> </label><br> <label>
 				<%=s.getEstilo()%></label><br> <label><%=s.getDescripcion()%></label><br>
@@ -28,5 +28,6 @@
 		%></div>
 		</div>
 		<%@ include file="parts/footerAjax.jsp"%>
+		<input type="hidden" name="id_user" value=<%=id_u %>>
 </body>
 </html>

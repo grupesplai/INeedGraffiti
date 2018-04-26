@@ -177,7 +177,7 @@ public class UsuarioController {
 	}
 
 	
-	public static void subirimg(int id_user, String fileName, String comentario, String estilo, String fecha) {
+	public static void subirimg(int id_user, String fileName, String comentario, int estilo, String fecha) {
 
 		String sql = String.format(
 				"INSERT INTO imagenes (id_usuario, imagenes, description_imagen, estilo, fecha) VALUES (\"%s\",\"%s\", \"%s\", \"%s\", \"%s\")",
@@ -191,11 +191,11 @@ public class UsuarioController {
 		}
 	}
 	
-	public static void subiranuncio(int id_user, String fileName,  String descripcion, String fecha) {
+	public static void subiranuncio(int id_user, String fileName,  String descripcion) {
 
 		String sql = String.format(
-				"INSERT INTO muros (id_usuario, muro, description_muro, fecha_muro) VALUES (\"%s\",\"%s\", \"%s\", \"%s\")",
-				id_user, fileName, descripcion, fecha);
+				"INSERT INTO muros (id_usuario, muro, description_muro) VALUES (\"%s\", \"%s\", \"%s\")",
+				id_user, fileName, descripcion);
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
 			stmt.executeUpdate(sql);

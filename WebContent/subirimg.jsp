@@ -5,12 +5,16 @@
 <%@ include file="parts/barraMenu.jsp"%>
 	<div class="container" style="padding-top: 60px">
 
-	<form enctype="multipart/form-data" action="subirimg" method="post" >
-	Seleciona una imagen:<input type="file" name="file">
+	<h1>Publicar imagen</h1>
 	<br>
+	<div>
+	<form enctype="multipart/form-data" action="subirimg" method="post" >
 	<div class="form-group">
-			<label for="comentario" >Descripción:</label> <input type="text"  class="form-control"
-				name="comentario">
+	<label for="imagen">Seleciona una imagen:</label><input type="file" name="file" class="form-control-file">
+	</div>
+	<div class="form-group">
+			<label for="comentario" >Descripción:</label> <textarea type="text"  class="form-control" rows="3"
+				name="comentario"></textarea>
 		</div>
 	
 		<div class="form-group">
@@ -18,12 +22,13 @@
 			<%
 	                    List<home> listEstilos = ImgController.getEstilos();
 	                    %>
-			<select name="poblacion" class="form-group" required>
+			<select name="poblacion" class="form-group-control" required>
 				<option value="" disabled selected>Seleccionar un estilo</option>
 				<%
 						for (home g : listEstilos) {
-	                            %>
-				<option value="<%= g.getId_estilo() %>"><%= g.getEstilo() %></option>
+	                           
+							%>
+				<option name="estilo" value="<%= g.getId_estilo() %>"><%= g.getEstilo() %></option>
 				<% }     %>
 			</select>
 		</div>
@@ -34,6 +39,7 @@
 		
 	<input type="submit" value="Publicar" class="btn btn-primary">
 	</form>
+</div>
 </div>
 	<%@ include file="parts/footerAjax.jsp"%>
 </body>

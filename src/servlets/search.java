@@ -42,6 +42,7 @@ public class search extends HttpServlet {
 		String busqueda = request.getParameter("Buscar");
 		session.setAttribute("Buscar", busqueda);
 		response.sendRedirect("busqueda.jsp");
+		
 	}
 
 }

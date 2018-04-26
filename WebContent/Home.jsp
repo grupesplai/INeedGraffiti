@@ -19,17 +19,7 @@
 			</div>
 			<%}%>
 			<br>
-			<div style="display:flex;padding-left:200px">
-			<form class="navbar-form navbar-left text-center"
-					action="search" method="post">
-					<div class="form-group">
-						<input type="text" class="form-control" name="Buscar" style="width:300px;font-size:12px;font-style:italic"
-							placeholder="BuscarGraffiti">
-					</div>
-					<button type="submit" class="btn btn-default" style="font-size:12px;color:white;background:#212529">Buscar</button>
-				</form></div>
-
-				<br><br>
+			
 	<div class="timeline row" style="position: relative; height:auto;">
     <%
 			for (home g : tops) {
