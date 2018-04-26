@@ -49,7 +49,7 @@
 				<input type="password" name="confirmPassword" style="width:30%;height:34px"
 					class="form-control" id="confirmPassword" placeholder="Repite la Contraseña" required>
 			</div>
-			<button type="submit" class="btn btn-primary" id="registrar">Enviar</button>
+			<button type="submit" class="btn btn-primary" style="width:16%;font-size:12px">Registrarse</button>
 		</div>
 		</form>
 	</div>

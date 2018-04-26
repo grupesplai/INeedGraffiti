@@ -29,7 +29,8 @@ public class Anuncios {
 
 	}
 	
-	public Anuncios(String usuario, String muro, String descripcion, String fecha) {
+	public Anuncios(int id_anun,String usuario, String muro, String descripcion, String fecha) {
+		this.idMuro = id_anun;
 		this.nomUsuario= usuario;
 		this.url = muro;
 		this.descripcion = descripcion;

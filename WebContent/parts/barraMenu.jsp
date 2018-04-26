@@ -65,6 +65,26 @@
 		</ul>
 	</div>
 </nav>
+	<% 
+	if(id_u != 0){
+	%>
+			<div style="padding-left:200px;padding-top:10px">
+				<a class="btn btn-secondary btn-sm" href="anuncios.jsp" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Anuncios</a>
+				<a class="btn btn-secondary btn-sm" href="pasaId?id_usu=<%=id_u%>&id_usua=<%=id_u%>" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Historial de mensajes</a>
+				<a class="btn btn-secondary btn-sm" href="perfil?id_autor=<%=id_u%>&id_usu=<%=id_u%>" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Mi Muro</a>
+				<a class="btn btn-secondary btn-sm" href="publicar.jsp" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Publicar</a>
+
+				<br>
+			</div>
+	<%}else{
+		%>
+		<div style="padding-left:200px;padding-top:10px">
+			<a class="btn btn-secondary btn-sm" href="anuncios.jsp" role="buttom" style="font-size:15px;font-family:'Pacifico',cursive;font-weight:normal">Anuncios</a>
+			<br>
+		</div>
+<%
+	}
+		%>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>

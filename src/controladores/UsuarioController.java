@@ -110,7 +110,7 @@ public class UsuarioController {
 	public static List<Anuncios> getAnuncio(int id_usu) throws SQLException {
 
 		List<Anuncios> listimagen = new ArrayList<Anuncios>();
-		String sql = "SELECT usuario,muro,description_muro,fecha_muro FROM muros JOIN usuario "
+		String sql = "SELECT id_muros,usuario,muro,description_muro,fecha_muro FROM muros JOIN usuario "
 				+ "ON muros.id_usuario=usuario.id_usuario WHERE muros.id_usuario='"+ id_usu + "' ORDER BY fecha_muro DESC";
 
 		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
@@ -118,7 +118,8 @@ public class UsuarioController {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				listimagen.add(new Anuncios(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+				listimagen.add(new Anuncios(
+						rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
 			}
 		}
 		return listimagen;
@@ -206,24 +207,26 @@ public class UsuarioController {
 	}
 	
 	public static void modificarUsuario(int id_u,String nombre, String apellido, String mail, String movil, String nick,
-					String password) {
-				
-				String sql = "UPDATE usuario SET nombre = ?, apelido =?,usuario=?, mail=?, " + 
-						"movil=?, contraseña=? WHERE id_usuario=?";
+			String password,String img_perfil) {
+		
+		String sql = "UPDATE usuario SET nombre = ?, apelido =?,usuario=?, mail=?, " + 
+				"movil=?, contraseña=?,imagen_perfil=? WHERE id_usuario=?";
+	
+		try (Connection conn = BDConn.getConn();PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	
+			pstmt.setString(1, nombre);
+			pstmt.setString(2, apellido);
+			pstmt.setString(3, nick);
+			pstmt.setString(4, mail);
+			pstmt.setString(5, movil);
+			pstmt.setString(6, password);
+			pstmt.setString(7, img_perfil);
+			pstmt.setInt(8, id_u);
 			
-				try (Connection conn = BDConn.getConn();PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			
-					pstmt.setString(1, nombre);
-					pstmt.setString(2, apellido);
-					pstmt.setString(3, nick);
-					pstmt.setString(4, mail);
-					pstmt.setString(5, movil);
-					pstmt.setString(6, password);
-					pstmt.setInt(7, id_u);
-					pstmt.executeUpdate();
-				} catch (Exception e) {
-					String s = e.getMessage();
-				System.out.println(s);
-				}
-	}
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			String s = e.getMessage();
+		System.out.println(s);
+		}
+}
 }

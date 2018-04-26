@@ -49,4 +49,27 @@ public class SearchController {
 		}
 		return uList;
 	}
+	
+	
+	public static List<Search> buscaEstilo(String busqueda) {
+
+		List<Search> uList = new ArrayList<Search>();
+		String sql = "SELECT id_imagenes,imagenes.id_usuario,imagenes,usuario,description_imagen,estilo " + 
+				"FROM imagenes JOIN usuario ON imagenes.id_usuario=usuario.id_usuario " + 
+				"JOIN estilos ON estilos.id_estilo=imagenes.id_estilo WHERE estilos.estilo=" + busqueda;
+			
+		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
+
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				uList.add(new Search(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6)));
+			}
+		} catch (Exception e) {
+			String s = e.getMessage();
+			System.out.println(s);
+		}
+		return uList;
+	}
 }

@@ -9,19 +9,21 @@
 <% 
 		List<Usuario> profile = UsuarioController.getPerfil(id_u);
 %>
+<div align="center">
 <img class="img-fluid img-thumbnail" src="user/<%=ImgController.unaImagenP(id_u)%>"
 					width="200" height="200">
-					<br><br>
-
-		<h1>Editar Usuario</h1>
-		<hr>
+</div>
 		
 			<%
 				for (Usuario user : profile) {
-			
 			%>
 			<div class="place" style="padding-left:150px">
-				<form action="registro" method="post">
+			<form action="registro" method="post">
+					<input type="file" name="file" class="form-control-file" id="file" style="color:black">
+					<br><br>
+		<h1>Editar Usuario</h1>
+		<hr>
+				
 					<div class="form-group">
 						<label for="nombreUsuario">Nombre</label> 
 						<input type="text" name="nombreUsuario" class="form-control" style="width:30%;height:34px" id="nombreUsuario"
@@ -62,7 +64,7 @@
 					</div>
 
 					<input type="hidden" name="modificar" value="<%=id_u%>">
-					<button type="submit" class="btn btn-primary" id="registrar">Enviar</button>
+					<button type="submit" class="btn btn-primary" style="width:16%;font-size:12px">Modificar</button>
 				</form>	
 				</div>		
 			<%
