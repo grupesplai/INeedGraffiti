@@ -39,7 +39,7 @@
 			<form class="navbar-form navbar-left text-center" action="login" method="post" style="color:black">
 			<div class="form-group" style="display:inline-block;padding-top:5px">
 				<input name="usuario" placeholder="Nombre de usuario" class="form-control" style="width:200px;height:26px;display:inline-block;font-size:12px;font-style:italic"> 
-				<input name="password" placeholder="Contraseña" class="form-control" style="width:200px;height:26px;display:inline-block;font-size:12px;font-style:italic"> 
+				<input type="password" name="password" placeholder="Contraseña" class="form-control" style="width:200px;height:26px;display:inline-block;font-size:12px;font-style:italic"> 
 			<input
 				type="submit" value="Entrar" class="btn btn-default" style="display:inline-block;font-size:12px"></div>
 			</form><li><a href="registro.jsp"><span class="glyphicon glyphicon-user"></span> Registrar

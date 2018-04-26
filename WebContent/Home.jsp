@@ -46,7 +46,7 @@
 	<div class="panel-body panel-boxed pull-left" style="padding-left:20px; margin-bottom:20px">
 		<h5 class="text-portfolio-img" style="font-style:italic" >Le ha gustado a <b><span class="numlikes"><%=g.getLikes()%></span></b> personas</h5>
 		<h4 class="text-portfolio-img">Autor: <a href="perfil?id_autor=<%=g.getIdUsuario()%>&id_usu=<%=id_u%>" style="color:black;font-style:italic"><%=g.getNomUsuario()%></a></h4>
-		<h4 class="text-portfolio-img">Ubicación: <a href="#" style="color:black;font-style:italic">Barcelona</a></h4>
+		<h4 class="text-portfolio-img">Ubicación: <a href="search?Buscar=Barcelona" style="color:black;font-style:italic">Barcelona</a></h4>
 	</div></div>
 	</div>
 	<%
