@@ -37,7 +37,7 @@
 <div class="panel-body panel-boxed pull-left" style="margin-bottom:20px;text-align:left;padding-left:311px">
 			
 			<h4 class="text-portfolio-img">Autor: <a href="perfil?id_autor=<%=f.getIdUsuario()%>&id_usu=<%=id_u%>" style="color:black;font-style:italic"> <%=f.getNomUsuario()%></a></h4>
-			<h4 class="text-portfolio-img">Ubicación: <a href="#" style="color:black;font-style:italic"> Barcelona</a></h4> 
+			<h4 class="text-portfolio-img">Ubicación: <a href="search?Buscar=Barcelona" style="color:black;font-style:italic"> Barcelona</a></h4> 
 		<h4 class="text-portfolio-img">Estilo: <a href="search?Buscar=<%=f.getEstilo()%>" style="color:black;font-style:italic"> <%=f.getEstilo()%></a></h4>
 		<h4 class="text-portfolio-img">Fecha: <span style="color:black;font-style:italic"> <%=f.getFecha()%></span></h4>
 		<h4 class="text-portfolio-img" style="width:300px">Descripción: <span style="color:black;font-style:italic;font-weight:normal"> <%=f.getDescripcion()%></span></h4>
