@@ -12,7 +12,7 @@
 		<label for="imagen" >Imagen anuncio:</label><input type="file" class="form-control-file" name="file">
 		</div>
 		<div class="form-group">
-				<label for="comentario" >Descripción:</label> <textarea type="text" class="form-control"
+				<label for="comentario" >Descripción:</label> <textarea class="form-control"
 					name="descripcion" ></textarea>
 			</div>
 			<div class="form-group">

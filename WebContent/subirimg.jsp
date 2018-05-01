@@ -22,21 +22,21 @@
 			<%
 	                    List<home> listEstilos = ImgController.getEstilos();
 	                    %>
-			<select name="poblacion" class="form-group-control" required>
+			<select name="estilo" class="form-group-control" required>
 				<option value="" disabled selected>Seleccionar un estilo</option>
 				<%
 						for (home g : listEstilos) {
 	                           
 							%>
-				<option name="estilo" value="<%= g.getId_estilo() %>"><%= g.getEstilo() %></option>
+				<option value="<%=g.getId_estilo()%>"><%= g.getEstilo() %></option>
 				<% }     %>
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="fecha">Fecha:</label> <input type="text" class="form-control" name="fecha">
+			<label for="fecha">Fecha:</label>
 		</div>
 	<input type="hidden" name="ussuario" value=<%=id_u %>>
-		
+		<label>id_usu = as: <%=id_u %></label>
 	<input type="submit" value="Publicar" class="btn btn-primary">
 	</form>
 </div>

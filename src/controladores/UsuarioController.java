@@ -178,28 +178,36 @@ public class UsuarioController {
 	}
 
 	
-	public static void subirimg(int id_user, String fileName, String comentario, int estilo, String fecha) {
+	public static void subirimg(int id_user, String fileName, String desc, int estilo) {
 
-		String sql = String.format(
-				"INSERT INTO imagenes (id_usuario, imagenes, description_imagen, estilo, fecha) VALUES (\"%s\",\"%s\", \"%s\", \"%s\", \"%s\")",
-				id_user, fileName, comentario, estilo, fecha);
-
-		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate(sql);
+		String sql = "INSERT INTO imagenes (id_usuario, imagenes, description_imagen, id_estilo) VALUES (?,?,?,?)";
+		
+	
+		try (Connection conn = BDConn.getConn();PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	
+			pstmt.setInt(1, id_user);
+			pstmt.setString(2, fileName);
+			pstmt.setString(3, desc);
+			pstmt.setInt(4, estilo);
+			
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			String s = e.getMessage();
 			System.out.println(s);
 		}
 	}
 	
-	public static void subiranuncio(int id_user, String fileName,  String descripcion) {
+	public static void subiranuncio(int id_user, String fileName,  String desc) {
 
-		String sql = String.format(
-				"INSERT INTO muros (id_usuario, muro, description_muro) VALUES (\"%s\", \"%s\", \"%s\")",
-				id_user, fileName, descripcion);
+		String sql = "INSERT INTO muros (id_usuario, muro, description_muro) VALUES (?,?,?)";
 
-		try (Connection conn = BDConn.getConn(); Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate(sql);
+		try (Connection conn = BDConn.getConn();PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			
+			pstmt.setInt(1, id_user);
+			pstmt.setString(2, fileName);
+			pstmt.setString(3, desc);
+			
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			String s = e.getMessage();
 			System.out.println(s);
