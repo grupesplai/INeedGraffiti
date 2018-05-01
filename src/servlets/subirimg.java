@@ -29,7 +29,7 @@ public class subirimg extends HttpServlet {
 	 * Name of the directory where uploaded files will be saved, relative to
 	 * the web application directory.
 	 */
-	private static final String SAVE_DIR = "upload";
+	private static final String SAVE_DIR = "img";
 
 	/**
 	 * handles file upload
@@ -41,11 +41,10 @@ public class subirimg extends HttpServlet {
     	int id_user = Integer.parseInt(request.getParameter("ussuario"));
     	String comentario = request.getParameter("comentario");
 		int estilo = Integer.parseInt(request.getParameter("estilo"));
-		String fecha = request.getParameter("fecha");
 		
 		// gets absolute path of the web application
 		//String appPath = request.getServletContext().getRealPath("");
-		String appPath = "C:\\Users\\Vic\\git\\INeedGraffiti\\WebContent\\";
+		String appPath = "C:\\Users\\harry\\eclipse-workspace\\iGrafitti\\WebContent";
 		// constructs path of the directory to save uploaded file
 		String savePath = appPath + File.separator + SAVE_DIR;
 		System.out.println(savePath);
@@ -67,16 +66,11 @@ public class subirimg extends HttpServlet {
 			session.setAttribute("ussuario", id_user);
 	        session.setAttribute("comentario", comentario);
 	        session.setAttribute("estilo", estilo);
-	        session.setAttribute("fecha", fecha);
-	      
-	        
-	        
-	        UsuarioController.subirimg(id_user, fileName,comentario, estilo, fecha);
+
+	        UsuarioController.subirimg(id_user, fileName,comentario, estilo);			
 			
-			
-		request.setAttribute("message", "Imagen subida correctamente!");
-		getServletContext().getRequestDispatcher("/perfil.jsp").forward(
-				request, response);
+	        request.setAttribute("message", "Imagen subida correctamente!");
+		getServletContext().getRequestDispatcher("/perfil.jsp").forward(request, response);
 	}
 
 	/**

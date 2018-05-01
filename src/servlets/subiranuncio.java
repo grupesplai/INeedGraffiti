@@ -30,7 +30,7 @@ public class subiranuncio extends HttpServlet {
 	 * Name of the directory where uploaded files will be saved, relative to
 	 * the web application directory.
 	 */
-	private static final String SAVE_DIR = "img";
+	private static final String SAVE_DIR = "anuncios";
 
 	/**
 	 * handles file upload
@@ -44,7 +44,7 @@ public class subiranuncio extends HttpServlet {
 		
 		// gets absolute path of the web application
 		//String appPath = request.getServletContext().getRealPath("");
-		String appPath = "C:\\Users\\Vic\\git\\INeedGraffiti\\WebContent";
+		String appPath = "C:\\Users\\harry\\eclipse-workspace\\iGrafitti\\WebContent";
 		// constructs path of the directory to save uploaded file
 		String savePath = appPath + File.separator + SAVE_DIR;
 		System.out.println(savePath);
